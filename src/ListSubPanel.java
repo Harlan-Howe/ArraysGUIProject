@@ -16,7 +16,9 @@ public class ListSubPanel<ContentType> extends JPanel implements ActionListener,
     {
         super();
         myParent = parent;
+        guiList = new JList<ContentType>();
         buildGUI();
+        update();
     }
 
     /**
@@ -25,8 +27,7 @@ public class ListSubPanel<ContentType> extends JPanel implements ActionListener,
     public void buildGUI()
     {
         setLayout(new BorderLayout());
-        guiList = new JList<ContentType>();
-        guiList.addListSelectionListener(this);
+         guiList.addListSelectionListener(this);
         guiList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         this.add(guiList, BorderLayout.CENTER);
         Box buttonPanel = Box.createVerticalBox();
@@ -61,6 +62,9 @@ public class ListSubPanel<ContentType> extends JPanel implements ActionListener,
         guiList.setListData(newList);
         guiList.setSelectedIndex(-1);
         guiList.repaint();
+        System.out.println("Updated with items:");
+        for (ContentType thing:  newList)
+            System.out.println(STR."\t\{thing}");
     }
 
 
