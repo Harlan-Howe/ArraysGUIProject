@@ -48,4 +48,11 @@ public class ItemPanel extends JPanel implements PanelManager<Detail>
     {
         return currentItem.getDetails();
     }
+
+    @Override
+    public void handleUserPickedIndex(int index)
+    {
+        System.out.println(STR."Hey, the user just picked a different item, #\{index} on the list. I should do something about that.");
+        // Recommended: tell the detail panel to update with the detail the user just picked.
+    }
 }
