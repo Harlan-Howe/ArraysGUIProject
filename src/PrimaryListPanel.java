@@ -48,4 +48,11 @@ public class PrimaryListPanel extends JPanel implements PanelManager<Item>
     {
         return new Item[0];
     }
+
+    @Override
+    public void handleUserPickedIndex(int index)
+    {
+        System.out.println(STR."The user just changed the selection in the list to #\{index}. I should probably do something about that.");
+        // Recommended: tell the item panel to update with the selected item in the list.
+    }
 }
