@@ -1,10 +1,10 @@
 import javax.swing.*;
 
-public class ListSubPanel extends JPanel
+public class ListSubPanel<ContentType> extends JPanel
 {
-    private PanelManager myParent;
+    private PanelManager<ContentType> myParent;
 
-    public ListSubPanel(PanelManager parent)
+    public ListSubPanel(PanelManager<ContentType> parent)
     {
         super();
         myParent = parent;
