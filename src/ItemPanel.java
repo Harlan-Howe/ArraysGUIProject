@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.util.List;
 
-public class ItemPanel extends JPanel implements PanelManager
+public class ItemPanel extends JPanel implements PanelManager<Detail>
 {
     private ListSubPanel<Detail> detailList;
     private Item currentItem;
@@ -44,7 +44,7 @@ public class ItemPanel extends JPanel implements PanelManager
     }
 
     @Override
-    public Object[] getListData()
+    public Detail[] getListData()
     {
         return currentItem.getDetails();
     }

@@ -51,6 +51,14 @@ public class ListSubPanel<ContentType> extends JPanel implements ActionListener
         this.setBorder(LineBorder.createGrayLineBorder());
     }
 
+    public void update()
+    {
+        ContentType[] newList = myParent.getListData();
+        guiList.setListData(newList);
+        guiList.setSelectedIndex(-1);
+        guiList.repaint();
+    }
+
     @Override
     /**
      * if the user clicks one of the buttons, this will call the corresponding command in the parent PanelManager.
@@ -58,13 +66,30 @@ public class ListSubPanel<ContentType> extends JPanel implements ActionListener
     public void actionPerformed(ActionEvent e)
     {
         if (e.getSource() == shiftUpButton)
-            myParent.handleShiftUp(guiList.getSelectedIndex());
+        {
+            int oldIndex = guiList.getSelectedIndex();
+            myParent.handleShiftUp(oldIndex);
+            update();
+            if (oldIndex>0)
+                guiList.setSelectedIndex(oldIndex-1);
+        }
         if (e.getSource() == shiftDownButton)
-            myParent.handleShiftDown(guiList.getSelectedIndex());
+        {
+            int oldIndex = guiList.getSelectedIndex();
+            myParent.handleShiftDown(oldIndex);
+            if (oldIndex > -1 && oldIndex < myParent.getListData().length-1)
+                guiList.setSelectedIndex(oldIndex+1);
+        }
         if (e.getSource() == addButton)
+        {
             myParent.handleAdd();
+            update();
+        }
         if (e.getSource() == removeButton)
+        {
             myParent.handleRemove(guiList.getSelectedIndex());
+            update();
+        }
 
     }
 }
