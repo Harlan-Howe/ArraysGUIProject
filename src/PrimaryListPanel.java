@@ -11,7 +11,15 @@ public class PrimaryListPanel extends JPanel implements PanelManager<Item>
     {
         super();
         listGUI = new ListSubPanel<Item>(this);
-        items = null;
+        items = new Item[1];
+        items[0] = new Item();
+        buildGUI();
+    }
+
+    public void buildGUI()
+    {
+
+        add(listGUI);
     }
 
     public void setItemPanel(ItemPanel ip)
@@ -22,25 +30,25 @@ public class PrimaryListPanel extends JPanel implements PanelManager<Item>
     @Override
     public void handleShiftUp(int index)
     {
-
+        System.out.println(STR."User has requested we shift item \{index} up, towards start of list.");
     }
 
     @Override
     public void handleShiftDown(int index)
     {
-
+        System.out.println(STR."User has requested we shift item \{index} down, towards bottom of list.");
     }
 
     @Override
     public void handleAdd()
     {
-
+        System.out.println("User has requested we add another item.");
     }
 
     @Override
     public void handleRemove(int index)
     {
-
+        System.out.println(STR."User has requested we remove item \{index}.");
     }
 
     @Override
