@@ -36,4 +36,9 @@ public interface PanelManager<ContentType>
      * @return the array to put in this list.
      */
     public ContentType[] getListData();
+
+    /**
+     * the user has chosen a new thing from the list. You may want to do something about that.
+     */
+    public void handleUserPickedIndex(int index);
 }
