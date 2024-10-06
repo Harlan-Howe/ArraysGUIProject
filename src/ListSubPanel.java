@@ -27,6 +27,7 @@ public class ListSubPanel<ContentType> extends JPanel implements ActionListener,
         setLayout(new BorderLayout());
         guiList = new JList<ContentType>();
         guiList.addListSelectionListener(this);
+        guiList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         this.add(guiList, BorderLayout.CENTER);
         Box buttonPanel = Box.createVerticalBox();
         buttonPanel.add(Box.createVerticalGlue());
