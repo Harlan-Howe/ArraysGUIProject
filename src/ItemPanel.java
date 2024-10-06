@@ -46,6 +46,8 @@ public class ItemPanel extends JPanel implements PanelManager<Detail>
     @Override
     public Detail[] getListData()
     {
+        if (currentItem == null)
+            return new Detail[0];
         return currentItem.getDetails();
     }
 
