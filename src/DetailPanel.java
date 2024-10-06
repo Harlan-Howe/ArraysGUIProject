@@ -1,3 +1,10 @@
-public class DetailPanel
+import javax.swing.*;
+
+public class DetailPanel extends JPanel
 {
+
+    public DetailPanel()
+    {
+        super();
+    }
 }
