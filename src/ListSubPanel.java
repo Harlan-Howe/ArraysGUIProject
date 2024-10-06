@@ -1,10 +1,12 @@
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ListSubPanel<ContentType> extends JPanel implements ActionListener
+public class ListSubPanel<ContentType> extends JPanel implements ActionListener, ListSelectionListener
 {
     private PanelManager<ContentType> myParent;
     private JList<ContentType> guiList;
@@ -24,6 +26,7 @@ public class ListSubPanel<ContentType> extends JPanel implements ActionListener
     {
         setLayout(new BorderLayout());
         guiList = new JList<ContentType>();
+        guiList.addListSelectionListener(this);
         this.add(guiList, BorderLayout.CENTER);
         Box buttonPanel = Box.createVerticalBox();
         buttonPanel.add(Box.createVerticalGlue());
@@ -59,26 +62,32 @@ public class ListSubPanel<ContentType> extends JPanel implements ActionListener
         guiList.repaint();
     }
 
-    @Override
+
     /**
      * if the user clicks one of the buttons, this will call the corresponding command in the parent PanelManager.
      */
+    @Override
     public void actionPerformed(ActionEvent e)
     {
         if (e.getSource() == shiftUpButton)
         {
             int oldIndex = guiList.getSelectedIndex();
-            myParent.handleShiftUp(oldIndex);
-            update();
             if (oldIndex>0)
-                guiList.setSelectedIndex(oldIndex-1);
+            {
+                myParent.handleShiftUp(oldIndex);
+                update();
+                guiList.setSelectedIndex(oldIndex - 1);
+            }
         }
         if (e.getSource() == shiftDownButton)
         {
             int oldIndex = guiList.getSelectedIndex();
-            myParent.handleShiftDown(oldIndex);
             if (oldIndex > -1 && oldIndex < myParent.getListData().length-1)
-                guiList.setSelectedIndex(oldIndex+1);
+            {
+                myParent.handleShiftDown(oldIndex);
+                update();
+                guiList.setSelectedIndex(oldIndex + 1);
+            }
         }
         if (e.getSource() == addButton)
         {
@@ -91,5 +100,11 @@ public class ListSubPanel<ContentType> extends JPanel implements ActionListener
             update();
         }
 
+    }
+
+    @Override
+    public void valueChanged(ListSelectionEvent e)
+    {
+        myParent.handleUserPickedIndex(guiList.getSelectedIndex());
     }
 }
