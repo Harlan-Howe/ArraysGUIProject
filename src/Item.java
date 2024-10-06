@@ -15,4 +15,8 @@ public class Item
         return details;
     }
 
+    public String toString()
+    {
+        return title;
+    }
 }
