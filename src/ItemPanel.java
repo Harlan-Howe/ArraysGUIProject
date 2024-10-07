@@ -1,13 +1,16 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 
-public class ItemPanel extends JPanel implements PanelManager<Detail>
+public class ItemPanel extends JPanel implements PanelManager<Detail>, ActionListener
 {
     private ListSubPanel<Detail> detailList;
     private Item currentItem;
     private DetailPanel theDetailPanel;
     private JTextField titleField, subtitleField;
+    JButton updateButton;
 
     public ItemPanel()
     {
@@ -41,6 +44,14 @@ public class ItemPanel extends JPanel implements PanelManager<Detail>
         itemFieldsPanel.add(titleField, constraints);
         constraints.gridy = 1;
         itemFieldsPanel.add(subtitleField, constraints);
+        updateButton = new JButton("Update");
+        updateButton.addActionListener(this);
+        constraints.gridx = 0;
+        constraints.gridy = 2;
+        constraints.gridwidth = 2;
+        constraints.weightx = 1;
+        constraints.anchor = GridBagConstraints.CENTER;
+        itemFieldsPanel.add(updateButton, constraints);
 
         contents.add(itemFieldsPanel);
         contents.add(detailList);
@@ -89,5 +100,15 @@ public class ItemPanel extends JPanel implements PanelManager<Detail>
     {
         System.out.println(STR."Hey, the user just picked a different item, #\{index} on the list. I should do something about that.");
         // Recommended: tell the detail panel to update with the detail the user just picked.
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e)
+    {
+        if (e.getSource() == updateButton)
+        {
+            System.out.println("User just pressed update. I should probably update the non-array parts of the current Item.");
+            System.out.println(STR."The new title should be '\{titleField.getText()}' and the subtitle should be '\{subtitleField.getText()}.'");
+        }
     }
 }
