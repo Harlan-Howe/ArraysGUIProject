@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.util.List;
 
 public class ItemPanel extends JPanel implements PanelManager<Detail>
@@ -6,12 +7,44 @@ public class ItemPanel extends JPanel implements PanelManager<Detail>
     private ListSubPanel<Detail> detailList;
     private Item currentItem;
     private DetailPanel theDetailPanel;
+    private JTextField titleField, subtitleField;
 
     public ItemPanel()
     {
         super();
         detailList = new ListSubPanel<Detail>(this);
         currentItem = null;
+        buildGUI();
+    }
+
+    public void buildGUI()
+    {
+        Box contents = Box.createVerticalBox();
+        this.add(contents);
+        titleField = new JTextField();
+        subtitleField = new JTextField();
+        JPanel itemFieldsPanel = new JPanel(new GridBagLayout());
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        constraints.weightx = 0.33;
+        constraints.weighty = 1;
+        constraints.anchor = GridBagConstraints.LINE_END;
+        itemFieldsPanel.add(new JLabel("Title"), constraints);
+        constraints.gridy = 1;
+        itemFieldsPanel.add(new JLabel("Subtitle"), constraints);
+        constraints.gridx = 1;
+        constraints.gridy = 0;
+        constraints.weightx = 0.67;
+        constraints.anchor = GridBagConstraints.LINE_START;
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        itemFieldsPanel.add(titleField, constraints);
+        constraints.gridy = 1;
+        itemFieldsPanel.add(subtitleField, constraints);
+
+        contents.add(itemFieldsPanel);
+        contents.add(detailList);
+
     }
 
     public void setDetailPanel(DetailPanel dp)
