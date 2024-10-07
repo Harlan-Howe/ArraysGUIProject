@@ -27,6 +27,15 @@ public class ItemPanel extends JPanel implements PanelManager<Detail>, ActionLis
         titleField = new JTextField();
         subtitleField = new JTextField();
         JPanel itemFieldsPanel = new JPanel(new GridBagLayout());
+        fillItemFieldsPanel(itemFieldsPanel);
+
+        contents.add(itemFieldsPanel);
+        contents.add(detailList);
+
+    }
+
+    private void fillItemFieldsPanel(JPanel itemFieldsPanel)
+    {
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.gridx = 0;
         constraints.gridy = 0;
@@ -52,10 +61,6 @@ public class ItemPanel extends JPanel implements PanelManager<Detail>, ActionLis
         constraints.weightx = 1;
         constraints.anchor = GridBagConstraints.CENTER;
         itemFieldsPanel.add(updateButton, constraints);
-
-        contents.add(itemFieldsPanel);
-        contents.add(detailList);
-
     }
 
     public void setDetailPanel(DetailPanel dp)
