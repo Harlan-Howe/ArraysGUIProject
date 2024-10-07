@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 
 public class PrimaryListPanel extends JPanel implements PanelManager<Item>
 {
@@ -10,16 +11,18 @@ public class PrimaryListPanel extends JPanel implements PanelManager<Item>
     public PrimaryListPanel()
     {
         super();
-        listGUI = new ListSubPanel<Item>(this);
         items = new Item[1];
         items[0] = new Item();
+        listGUI = new ListSubPanel<Item>(this);
+
         buildGUI();
+        listGUI.update();
+        repaint();
     }
 
     public void buildGUI()
     {
-
-        add(listGUI);
+        this.add(listGUI);
     }
 
     public void setItemPanel(ItemPanel ip)
@@ -54,7 +57,7 @@ public class PrimaryListPanel extends JPanel implements PanelManager<Item>
     @Override
     public Item[] getListData()
     {
-        return new Item[0];
+        return items;
     }
 
     @Override
