@@ -62,9 +62,9 @@ public class CategoryPanel extends JPanel implements PanelManager<Item>, ActionL
         itemFieldsPanel.add(updateButton, constraints);
     }
 
-    public void setDetailPanel(ItemPanel dp)
+    public void setItemPanel(ItemPanel ip)
     {
-        theItemPanel = dp;
+        theItemPanel = ip;
     }
 
     @Override
