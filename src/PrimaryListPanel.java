@@ -4,7 +4,7 @@ public class PrimaryListPanel extends JPanel implements PanelManager<Category>
 {
     private ListSubPanel<Category> listGUI;
     private Category[] categories;
-    private ItemPanel theItemPanel;
+    private CategoryPanel theCategoryPanel;
 
 
     public PrimaryListPanel()
@@ -24,9 +24,9 @@ public class PrimaryListPanel extends JPanel implements PanelManager<Category>
         this.add(listGUI);
     }
 
-    public void setItemPanel(ItemPanel ip)
+    public void setItemPanel(CategoryPanel ip)
     {
-        theItemPanel = ip;
+        theCategoryPanel = ip;
     }
 
     @Override

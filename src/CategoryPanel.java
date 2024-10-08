@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ItemPanel extends JPanel implements PanelManager<Detail>, ActionListener
+public class CategoryPanel extends JPanel implements PanelManager<Detail>, ActionListener
 {
     private ListSubPanel<Detail> detailList;
     private Category currentCategory;
@@ -11,7 +11,7 @@ public class ItemPanel extends JPanel implements PanelManager<Detail>, ActionLis
     private JTextField titleField, subtitleField;
     JButton updateButton;
 
-    public ItemPanel()
+    public CategoryPanel()
     {
         super();
         detailList = new ListSubPanel<Detail>(this);

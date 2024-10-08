@@ -5,7 +5,7 @@ public class ArraysGUIProjectFrame extends JFrame
 {
 
     private PrimaryListPanel leftPanel;
-    private ItemPanel centerPanel;
+    private CategoryPanel centerPanel;
     private DetailPanel rightPanel;
 
     public ArraysGUIProjectFrame()
@@ -24,7 +24,7 @@ public class ArraysGUIProjectFrame extends JFrame
     {
         this.getContentPane().setLayout(new GridLayout(1,3));
         leftPanel = new PrimaryListPanel();
-        centerPanel = new ItemPanel();
+        centerPanel = new CategoryPanel();
         rightPanel = new DetailPanel();
 
         this.getContentPane().add(leftPanel);
