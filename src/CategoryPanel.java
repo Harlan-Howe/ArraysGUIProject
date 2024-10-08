@@ -89,7 +89,6 @@ public class CategoryPanel extends JPanel implements ActionListener, ListSelecti
     public void valueChanged(ListSelectionEvent e)
     {
         System.out.println(STR."Hey, the user just picked a different item, #\{e.getFirstIndex()} on the list. I should do something about that.");
-        theItemPanel.setSelectedItem(currentCategory.getItemAtIndex(e.getFirstIndex()));
-
+        theItemPanel.setCurrentItem(currentCategory.getItemAtIndex(e.getFirstIndex()));
     }
 }
