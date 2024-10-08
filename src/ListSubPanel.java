@@ -21,6 +21,12 @@ public class ListSubPanel<ContentType> extends JPanel implements ActionListener
         update();
     }
 
+    public setMyManager(PanelManager<ContentType> mgr)
+    {
+        myManager = mgr;
+        update();
+    }
+
     /**
      * creates the GUI elements and links them so that this class will pay attention when the user interacts with them.
      */
@@ -59,13 +65,16 @@ public class ListSubPanel<ContentType> extends JPanel implements ActionListener
 
     public void update()
     {
-        ContentType[] newList = myManager.getListData();
-        guiList.setListData(newList);
-        guiList.setSelectedIndex(-1);
-        guiList.repaint();
-        System.out.println("Updated with items:");
-        for (ContentType thing:  newList)
-            System.out.println(STR."\t\{thing}");
+        if (myManager != null)
+        {
+            ContentType[] newList = myManager.getListData();
+            guiList.setListData(newList);
+            guiList.setSelectedIndex(-1);
+            guiList.repaint();
+            System.out.println("Updated with items:");
+            for (ContentType thing : newList)
+                System.out.println(STR."\t\{thing}");
+        }
     }
 
     public int getSelectedIndex()
