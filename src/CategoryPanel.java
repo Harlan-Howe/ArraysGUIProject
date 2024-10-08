@@ -67,7 +67,16 @@ public class CategoryPanel extends JPanel implements ActionListener, ListSelecti
     public void setCurrentCategory(Category cat)
     {
         currentCategory = cat;
-        // TODO update this panel...
+        if (currentCategory == null)
+        {
+            titleField.setText("");
+            itemList.setMyManager(null);
+        }
+        else
+        {
+            titleField.setText(currentCategory.getTitle());
+            itemList.setMyManager(currentCategory);
+        }
     }
     public void setItemPanel(ItemPanel ip)
     {
