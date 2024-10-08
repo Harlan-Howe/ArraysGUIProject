@@ -5,7 +5,8 @@ public class Category implements PanelManager<Item>
 
     public Category()
     {
-        items = new Item[0];
+        items = new Item[1];
+        items[0] = new Item();
         title = "Generic";
         subtitle = "No info yet.";
     }
