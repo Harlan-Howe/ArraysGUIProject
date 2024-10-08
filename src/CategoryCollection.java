@@ -15,6 +15,17 @@ public class CategoryCollection implements PanelManager<Category>
         return categories[index];
     }
 
+    public String getSaveString()
+    {
+        StringBuilder builder = new StringBuilder();
+        int numCategories = categories.length;
+        builder.append(numCategories);
+        builder.append("\n");
+        for (int i=0; i<numCategories; i++)
+            builder.append(categories[i].getSaveString());
+        return builder.toString();
+    }
+
     @Override
     public void handleShiftUp(int index)
     {
@@ -44,4 +55,5 @@ public class CategoryCollection implements PanelManager<Category>
     {
         return categories;
     }
+
 }
