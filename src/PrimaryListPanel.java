@@ -35,12 +35,7 @@ public class PrimaryListPanel extends JPanel implements ListSelectionListener, A
     public void handleSaveRequest()
     {
         System.out.println("Saving.");
-        StringBuilder builder = new StringBuilder();
-        int numCategories = theCategoryCollection.getListData().length;
-        builder.append(numCategories);
-        builder.append("\n");
-        for (int i=0; i<numCategories; i++)
-            builder.append(theCategoryCollection.getCategoryAtIndex(i).getSaveString());
+        String stringToSave = theCategoryCollection.getSaveString();
     }
 
     @Override
