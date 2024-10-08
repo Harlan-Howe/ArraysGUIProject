@@ -3,18 +3,18 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CategoryPanel extends JPanel implements PanelManager<Detail>, ActionListener
+public class CategoryPanel extends JPanel implements PanelManager<Item>, ActionListener
 {
-    private ListSubPanel<Detail> detailList;
+    private ListSubPanel<Item> detailList;
     private Category currentCategory;
-    private DetailPanel theDetailPanel;
+    private ItemPanel theItemPanel;
     private JTextField titleField, subtitleField;
     JButton updateButton;
 
     public CategoryPanel()
     {
         super();
-        detailList = new ListSubPanel<Detail>(this);
+        detailList = new ListSubPanel<Item>(this);
         currentCategory = null;
         buildGUI();
     }
@@ -62,27 +62,27 @@ public class CategoryPanel extends JPanel implements PanelManager<Detail>, Actio
         itemFieldsPanel.add(updateButton, constraints);
     }
 
-    public void setDetailPanel(DetailPanel dp)
+    public void setDetailPanel(ItemPanel dp)
     {
-        theDetailPanel = dp;
+        theItemPanel = dp;
     }
 
     @Override
     public void handleShiftUp(int index)
     {
-        System.out.println(STR."User would like to shift the Detail at \{index} up.");
+        System.out.println(STR."User would like to shift the Item at \{index} up.");
     }
 
     @Override
     public void handleShiftDown(int index)
     {
-        System.out.println(STR."User would like to shift the Detail at \{index} down.");
+        System.out.println(STR."User would like to shift the Item at \{index} down.");
     }
 
     @Override
     public void handleAdd()
     {
-        System.out.println("User would like to add another Detail.");
+        System.out.println("User would like to add another Item.");
     }
 
     @Override
@@ -92,10 +92,10 @@ public class CategoryPanel extends JPanel implements PanelManager<Detail>, Actio
     }
 
     @Override
-    public Detail[] getListData()
+    public Item[] getListData()
     {
         if (currentCategory == null)
-            return new Detail[0];
+            return new Item[0];
         return currentCategory.getDetails();
     }
 

@@ -1,18 +1,18 @@
 public class Category
 {
-    private Detail[] details;
+    private Item[] items;
     private String title, subtitle;
 
     public Category()
     {
-        details = null;
+        items = null;
         title = "Generic";
         subtitle = "No info yet.";
     }
 
-    public Detail[] getDetails()
+    public Item[] getDetails()
     {
-        return details;
+        return items;
     }
 
     public String toString()

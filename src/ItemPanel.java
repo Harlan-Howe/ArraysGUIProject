@@ -3,14 +3,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class DetailPanel extends JPanel implements ActionListener
+public class ItemPanel extends JPanel implements ActionListener
 {
     JTextField nameField;
     JCheckBox statusCheckBox;
     JTextArea detailTextArea;
     JButton updateButton;
 
-    public DetailPanel()
+    public ItemPanel()
     {
         super();
         buildGUI();

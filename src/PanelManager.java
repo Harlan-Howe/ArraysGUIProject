@@ -3,7 +3,7 @@
  * write. In this case, these are methods that a ListSubPanel needs to call so that the GUI commands of the user
  * can be managed by the class that is maintaining the array of items it is showing. (And it can request the latest
  * version of that list.)
- * @param <ContentType> - the type of thing (probably Category or Detail) that the list view will request.
+ * @param <ContentType> - the type of thing (probably Category or Item) that the list view will request.
  */
 
 public interface PanelManager<ContentType>
