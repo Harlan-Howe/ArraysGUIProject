@@ -8,7 +8,10 @@ import java.awt.event.ActionListener;
 
 public class ListSubPanel<ContentType> extends JPanel implements ActionListener
 {
+    public static final String NULL_LIST = "Null List";
+    public static final String FILLED_LIST = "List filled";
     private PanelManager<ContentType> myManager;
+    private CardLayout myCardLayout;
     private JList<ContentType> guiList;
     private JButton shiftUpButton, shiftDownButton, addButton, removeButton;
 
@@ -21,7 +24,7 @@ public class ListSubPanel<ContentType> extends JPanel implements ActionListener
         update();
     }
 
-    public setMyManager(PanelManager<ContentType> mgr)
+    public void setMyManager(PanelManager<ContentType> mgr)
     {
         myManager = mgr;
         update();
@@ -32,11 +35,20 @@ public class ListSubPanel<ContentType> extends JPanel implements ActionListener
      */
     public void buildGUI()
     {
-        setLayout(new BorderLayout());
+        myCardLayout = new CardLayout();
+        this.setLayout(myCardLayout);
+        this.add(new JLabel("List empty", JLabel.CENTER), NULL_LIST);
+        this.add(buildListLayout(), FILLED_LIST);
+        this.setBorder(LineBorder.createGrayLineBorder());
+    }
+    public JPanel buildListLayout()
+    {
+        JPanel result = new JPanel();
+        result.setLayout(new BorderLayout());
         guiList.addListSelectionListener((ListSelectionListener)getParent());
         guiList.setPreferredSize(new Dimension(150,400));
         guiList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        this.add(guiList, BorderLayout.CENTER);
+        result.add(guiList, BorderLayout.CENTER);
         Box buttonPanel = Box.createVerticalBox();
         buttonPanel.add(Box.createVerticalGlue());
         shiftUpButton = new JButton("⬆︎");
@@ -59,13 +71,18 @@ public class ListSubPanel<ContentType> extends JPanel implements ActionListener
         buttonPanel.add(Box.createVerticalGlue());
         removeButton.addActionListener(this);
 
-        this.add(buttonPanel, BorderLayout.EAST);
-        this.setBorder(LineBorder.createGrayLineBorder());
+        result.add(buttonPanel, BorderLayout.EAST);
+
+        return result;
     }
 
     public void update()
     {
-        if (myManager != null)
+        if (myManager == null)
+        {
+            myCardLayout.show(this,NULL_LIST);
+        }
+        else
         {
             ContentType[] newList = myManager.getListData();
             guiList.setListData(newList);
@@ -74,6 +91,7 @@ public class ListSubPanel<ContentType> extends JPanel implements ActionListener
             System.out.println("Updated with items:");
             for (ContentType thing : newList)
                 System.out.println(STR."\t\{thing}");
+            myCardLayout.show(this,FILLED_LIST);
         }
     }
 
