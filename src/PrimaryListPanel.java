@@ -49,7 +49,7 @@ public class PrimaryListPanel extends JPanel implements ListSelectionListener, A
         }
         String stringToSave = theCategoryCollection.getSaveString();
         System.out.println(stringToSave);
-        try (PrintWriter fileOut = new PrintWriter("filename.txt")) {
+        try (PrintWriter fileOut = new PrintWriter(latestFile)) {
             fileOut.println(stringToSave);
             System.out.println("Saved.");
         } catch (FileNotFoundException e)
