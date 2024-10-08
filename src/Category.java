@@ -10,9 +10,9 @@ public class Category implements PanelManager<Item>
         subtitle = "No info yet.";
     }
 
-    public Item[] getDetails()
+    public String getTitle()
     {
-        return items;
+        return title;
     }
 
     public String toString()
