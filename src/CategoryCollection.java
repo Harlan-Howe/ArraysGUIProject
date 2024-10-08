@@ -4,7 +4,8 @@ public class CategoryCollection implements PanelManager<Category>
 
     public CategoryCollection()
     {
-        categories = new Category[0];
+        categories = new Category[1];
+        categories[0] = new Category();
     }
 
     public Category getCategoryAtIndex(int index)
