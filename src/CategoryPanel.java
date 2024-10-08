@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CategoryPanel extends JPanel implements PanelManager<Item>, ActionListener, ListSelectionListener
+public class CategoryPanel extends JPanel implements ActionListener, ListSelectionListener
 {
     private ListSubPanel<Item> itemList;
     private Category currentCategory;
@@ -16,7 +16,7 @@ public class CategoryPanel extends JPanel implements PanelManager<Item>, ActionL
     public CategoryPanel()
     {
         super();
-        itemList = new ListSubPanel<Item>(this);
+        itemList = new ListSubPanel<Item>(null);
         currentCategory = null;
         buildGUI();
     }
@@ -74,44 +74,6 @@ public class CategoryPanel extends JPanel implements PanelManager<Item>, ActionL
         theItemPanel = ip;
     }
 
-    @Override
-    public void handleShiftUp(int index)
-    {
-        System.out.println(STR."User would like to shift the Item at \{index} up.");
-    }
-
-    @Override
-    public void handleShiftDown(int index)
-    {
-        System.out.println(STR."User would like to shift the Item at \{index} down.");
-    }
-
-    @Override
-    public void handleAdd()
-    {
-        System.out.println("User would like to add another Item.");
-    }
-
-    @Override
-    public void handleRemove(int index)
-    {
-        System.out.println(STR."User would like to remove the item at \{index}.");
-    }
-
-    @Override
-    public Item[] getListData()
-    {
-        if (currentCategory == null)
-            return new Item[0];
-        return currentCategory.getDetails();
-    }
-
-
-    public void handleUserPickedIndex(int index)
-    {
-        System.out.println(STR."Hey, the user just picked a different item, #\{index} on the list. I should do something about that.");
-        // Recommended: tell the detail panel to update with the detail the user just picked.
-    }
 
     @Override
     public void actionPerformed(ActionEvent e)
@@ -126,6 +88,8 @@ public class CategoryPanel extends JPanel implements PanelManager<Item>, ActionL
     @Override
     public void valueChanged(ListSelectionEvent e)
     {
-        handleUserPickedIndex(itemList.getSelectedIndex());
+        System.out.println(STR."Hey, the user just picked a different item, #\{e.getFirstIndex()} on the list. I should do something about that.");
+        theItemPanel.setSelectedItem(currentCategory.getItemAtIndex(e.getFirstIndex()));
+
     }
 }

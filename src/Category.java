@@ -49,4 +49,11 @@ public class Category implements PanelManager<Item>
     {
         return items;
     }
+
+    public Item getItemAtIndex(int index)
+    {
+        if (index == -1)
+            return null;
+        return items[index];
+    }
 }

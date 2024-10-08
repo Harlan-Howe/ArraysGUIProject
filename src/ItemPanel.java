@@ -9,11 +9,14 @@ public class ItemPanel extends JPanel implements ActionListener
     JCheckBox statusCheckBox;
     JTextArea detailTextArea;
     JButton updateButton;
+    Item currentItem;
 
     public ItemPanel()
     {
         super();
+        currentItem = null;
         buildGUI();
+
     }
 
     public void buildGUI()
@@ -56,6 +59,12 @@ public class ItemPanel extends JPanel implements ActionListener
         panel.add(nameField, constraints);
         constraints.gridy = 1;
         panel.add(statusCheckBox, constraints);
+    }
+
+    public void setCurrentItem(Item item)
+    {
+        currentItem = item;
+        // TODO update the panel.
     }
 
     @Override
