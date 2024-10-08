@@ -1,11 +1,11 @@
-public class Category
+public class Category implements PanelManager<Item>
 {
     private Item[] items;
     private String title, subtitle;
 
     public Category()
     {
-        items = null;
+        items = new Item[0];
         title = "Generic";
         subtitle = "No info yet.";
     }
@@ -18,5 +18,35 @@ public class Category
     public String toString()
     {
         return title;
+    }
+
+    @Override
+    public void handleShiftUp(int index)
+    {
+        System.out.println(STR."User would like to shift the Item at \{index} up.");
+    }
+
+    @Override
+    public void handleShiftDown(int index)
+    {
+        System.out.println(STR."User would like to shift the Item at \{index} down.");
+    }
+
+    @Override
+    public void handleAdd()
+    {
+        System.out.println("User would like to add another Item.");
+    }
+
+    @Override
+    public void handleRemove(int index)
+    {
+        System.out.println(STR."User would like to remove the item at \{index}.");
+    }
+
+    @Override
+    public Item[] getListData()
+    {
+        return items;
     }
 }

@@ -1,11 +1,13 @@
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CategoryPanel extends JPanel implements PanelManager<Item>, ActionListener
+public class CategoryPanel extends JPanel implements PanelManager<Item>, ActionListener, ListSelectionListener
 {
-    private ListSubPanel<Item> detailList;
+    private ListSubPanel<Item> itemList;
     private Category currentCategory;
     private ItemPanel theItemPanel;
     private JTextField titleField, subtitleField;
@@ -14,7 +16,7 @@ public class CategoryPanel extends JPanel implements PanelManager<Item>, ActionL
     public CategoryPanel()
     {
         super();
-        detailList = new ListSubPanel<Item>(this);
+        itemList = new ListSubPanel<Item>(this);
         currentCategory = null;
         buildGUI();
     }
@@ -29,7 +31,7 @@ public class CategoryPanel extends JPanel implements PanelManager<Item>, ActionL
         fillItemFieldsPanel(itemFieldsPanel);
 
         contents.add(itemFieldsPanel);
-        contents.add(detailList);
+        contents.add(itemList);
 
     }
 
@@ -62,6 +64,11 @@ public class CategoryPanel extends JPanel implements PanelManager<Item>, ActionL
         itemFieldsPanel.add(updateButton, constraints);
     }
 
+    public void setCurrentCategory(Category cat)
+    {
+        currentCategory = cat;
+        // TODO update this panel...
+    }
     public void setItemPanel(ItemPanel ip)
     {
         theItemPanel = ip;
@@ -99,7 +106,7 @@ public class CategoryPanel extends JPanel implements PanelManager<Item>, ActionL
         return currentCategory.getDetails();
     }
 
-    @Override
+
     public void handleUserPickedIndex(int index)
     {
         System.out.println(STR."Hey, the user just picked a different item, #\{index} on the list. I should do something about that.");
@@ -114,5 +121,11 @@ public class CategoryPanel extends JPanel implements PanelManager<Item>, ActionL
             System.out.println("User just pressed update. I should probably update the non-array parts of the current Category.");
             System.out.println(STR."The new title should be '\{titleField.getText()}' and the subtitle should be '\{subtitleField.getText()}.'");
         }
+    }
+
+    @Override
+    public void valueChanged(ListSelectionEvent e)
+    {
+        handleUserPickedIndex(itemList.getSelectedIndex());
     }
 }
