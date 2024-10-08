@@ -81,6 +81,11 @@ public class ItemPanel extends JPanel implements ActionListener
         {
             System.out.println("The user just pressed the update button. I should alter the current item's details based on the controls in this panel.");
             System.out.println(STR."Name should now be '\{nameField.getText()}', status should be \{statusCheckBox.isSelected()}, and the detail should be '\{detailTextArea.getText()}'");
+            if (currentItem != null)
+            {
+                currentItem.setName(nameField.getText());
+                getParent().repaint();
+            }
         }
     }
 }
