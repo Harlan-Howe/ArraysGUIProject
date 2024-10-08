@@ -3,12 +3,16 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 
 public class PrimaryListPanel extends JPanel implements ListSelectionListener, ActionListener
 {
     private ListSubPanel<Category> listGUI;
     private CategoryCollection theCategoryCollection;
-    private CategoryPanel theCategoryPanel = null;
+    private CategoryPanel theCategoryPanel;
+    private File latestFile;
 
 
     public PrimaryListPanel()
@@ -16,6 +20,9 @@ public class PrimaryListPanel extends JPanel implements ListSelectionListener, A
         super();
         theCategoryCollection = new CategoryCollection();
         listGUI = new ListSubPanel<Category>(theCategoryCollection, this);
+
+        latestFile = null;
+        theCategoryPanel = null;
 
         buildGUI();
         listGUI.update();
@@ -35,8 +42,36 @@ public class PrimaryListPanel extends JPanel implements ListSelectionListener, A
     public void handleSaveRequest()
     {
         System.out.println("Saving.");
+        if (latestFile == null)
+        {
+            handleSaveAsRequest();
+            return;
+        }
         String stringToSave = theCategoryCollection.getSaveString();
+        System.out.println(stringToSave);
+        try (PrintWriter fileOut = new PrintWriter("filename.txt")) {
+            fileOut.println(stringToSave);
+            System.out.println("Saved.");
+        } catch (FileNotFoundException e)
+        {
+            System.out.println(STR."Error opening file: \{latestFile.getPath()}");
+        }
+
     }
+
+    public void handleSaveAsRequest()
+    {
+        JFileChooser saveDialog = new JFileChooser();
+        saveDialog.setCurrentDirectory(latestFile);
+        int confirmed = saveDialog.showSaveDialog(this);
+        File selectedFile = saveDialog.getSelectedFile();
+        if (JFileChooser.CANCEL_OPTION == confirmed || selectedFile == null)
+            return;
+        latestFile = selectedFile;
+        handleSaveRequest();
+    }
+
+
 
     @Override
     public void valueChanged(ListSelectionEvent e)
