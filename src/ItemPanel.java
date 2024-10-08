@@ -2,12 +2,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 public class ItemPanel extends JPanel implements PanelManager<Detail>, ActionListener
 {
     private ListSubPanel<Detail> detailList;
-    private Item currentItem;
+    private Category currentCategory;
     private DetailPanel theDetailPanel;
     private JTextField titleField, subtitleField;
     JButton updateButton;
@@ -16,7 +15,7 @@ public class ItemPanel extends JPanel implements PanelManager<Detail>, ActionLis
     {
         super();
         detailList = new ListSubPanel<Detail>(this);
-        currentItem = null;
+        currentCategory = null;
         buildGUI();
     }
 
@@ -95,9 +94,9 @@ public class ItemPanel extends JPanel implements PanelManager<Detail>, ActionLis
     @Override
     public Detail[] getListData()
     {
-        if (currentItem == null)
+        if (currentCategory == null)
             return new Detail[0];
-        return currentItem.getDetails();
+        return currentCategory.getDetails();
     }
 
     @Override
@@ -112,7 +111,7 @@ public class ItemPanel extends JPanel implements PanelManager<Detail>, ActionLis
     {
         if (e.getSource() == updateButton)
         {
-            System.out.println("User just pressed update. I should probably update the non-array parts of the current Item.");
+            System.out.println("User just pressed update. I should probably update the non-array parts of the current Category.");
             System.out.println(STR."The new title should be '\{titleField.getText()}' and the subtitle should be '\{subtitleField.getText()}.'");
         }
     }

@@ -1,9 +1,9 @@
-public class Item
+public class Category
 {
     private Detail[] details;
     private String title, subtitle;
 
-    public Item()
+    public Category()
     {
         details = null;
         title = "Generic";

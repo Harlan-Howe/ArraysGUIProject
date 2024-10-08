@@ -1,19 +1,18 @@
 import javax.swing.*;
-import java.awt.*;
 
-public class PrimaryListPanel extends JPanel implements PanelManager<Item>
+public class PrimaryListPanel extends JPanel implements PanelManager<Category>
 {
-    private ListSubPanel<Item> listGUI;
-    private Item[] items;
+    private ListSubPanel<Category> listGUI;
+    private Category[] categories;
     private ItemPanel theItemPanel;
 
 
     public PrimaryListPanel()
     {
         super();
-        items = new Item[1];
-        items[0] = new Item();
-        listGUI = new ListSubPanel<Item>(this);
+        categories = new Category[1];
+        categories[0] = new Category();
+        listGUI = new ListSubPanel<Category>(this);
 
         buildGUI();
         listGUI.update();
@@ -55,9 +54,9 @@ public class PrimaryListPanel extends JPanel implements PanelManager<Item>
     }
 
     @Override
-    public Item[] getListData()
+    public Category[] getListData()
     {
-        return items;
+        return categories;
     }
 
     @Override
