@@ -12,6 +12,11 @@ public class Item
         return name;
     }
 
+    public void setName(String s)
+    {
+        name = s;
+    }
+
     @Override
     public String toString()
     {
