@@ -91,6 +91,11 @@ public class CategoryPanel extends JPanel implements ActionListener, ListSelecti
         {
             System.out.println("User just pressed update. I should probably update the non-array parts of the current Category.");
             System.out.println(STR."The new title should be '\{titleField.getText()}' and the subtitle should be '\{subtitleField.getText()}.'");
+            if (currentCategory != null)
+            {
+                currentCategory.setTitle(titleField.getText());
+                getParent().repaint();
+            }
         }
     }
 
