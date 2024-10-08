@@ -13,7 +13,7 @@ public class PrimaryListPanel extends JPanel implements ListSelectionListener
     {
         super();
         theCategoryCollection = new CategoryCollection();
-        listGUI = new ListSubPanel<Category>(theCategoryCollection);
+        listGUI = new ListSubPanel<Category>(theCategoryCollection, this);
 
         buildGUI();
         listGUI.update();
