@@ -16,6 +16,11 @@ public class Category implements PanelManager<Item>
         return title;
     }
 
+    public void setTitle(String s)
+    {
+        title = s;
+    }
+
     public String toString()
     {
         return title;
