@@ -64,7 +64,14 @@ public class ItemPanel extends JPanel implements ActionListener
     public void setCurrentItem(Item item)
     {
         currentItem = item;
-        // TODO update the panel.
+        if (currentItem == null)
+        {
+            nameField.setText("");
+        }
+        else
+        {
+            nameField.setText(currentItem.getName());
+        }
     }
 
     @Override
