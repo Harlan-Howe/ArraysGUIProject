@@ -22,4 +22,9 @@ public class Item
     {
         return name;
     }
+
+    public String getSaveString()
+    {
+        return STR."\{name}\n";
+    }
 }
