@@ -16,7 +16,7 @@ public class CategoryPanel extends JPanel implements ActionListener, ListSelecti
     public CategoryPanel()
     {
         super();
-        itemList = new ListSubPanel<Item>(null);
+        itemList = new ListSubPanel<Item>(null, this);
         currentCategory = null;
         buildGUI();
     }
