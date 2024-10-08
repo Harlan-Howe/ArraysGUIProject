@@ -15,12 +15,12 @@ public class ListSubPanel<ContentType> extends JPanel implements ActionListener
     private JList<ContentType> guiList;
     private JButton shiftUpButton, shiftDownButton, addButton, removeButton;
 
-    public ListSubPanel(PanelManager<ContentType> manager)
+    public ListSubPanel(PanelManager<ContentType> manager, ListSelectionListener listener)
     {
         super();
         myManager = manager;
         guiList = new JList<ContentType>();
-        buildGUI();
+        buildGUI(listener);
         update();
     }
 
@@ -33,19 +33,19 @@ public class ListSubPanel<ContentType> extends JPanel implements ActionListener
     /**
      * creates the GUI elements and links them so that this class will pay attention when the user interacts with them.
      */
-    public void buildGUI()
+    public void buildGUI(ListSelectionListener listener)
     {
         myCardLayout = new CardLayout();
         this.setLayout(myCardLayout);
         this.add(new JLabel("List empty", JLabel.CENTER), NULL_LIST);
-        this.add(buildListLayout(), FILLED_LIST);
+        this.add(buildListLayout(listener), FILLED_LIST);
         this.setBorder(LineBorder.createGrayLineBorder());
     }
-    public JPanel buildListLayout()
+    public JPanel buildListLayout(ListSelectionListener listener)
     {
         JPanel result = new JPanel();
         result.setLayout(new BorderLayout());
-        guiList.addListSelectionListener((ListSelectionListener)getParent());
+        guiList.addListSelectionListener(listener);
         guiList.setPreferredSize(new Dimension(150,400));
         guiList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         result.add(guiList, BorderLayout.CENTER);
