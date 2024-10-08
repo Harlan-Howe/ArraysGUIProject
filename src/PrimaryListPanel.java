@@ -3,15 +3,14 @@ import javax.swing.*;
 public class PrimaryListPanel extends JPanel implements PanelManager<Category>
 {
     private ListSubPanel<Category> listGUI;
-    private Category[] categories;
+    private CategoryCollection categories;
     private CategoryPanel theCategoryPanel;
 
 
     public PrimaryListPanel()
     {
         super();
-        categories = new Category[1];
-        categories[0] = new Category();
+        categories = new CategoryCollection();
         listGUI = new ListSubPanel<Category>(this);
 
         buildGUI();
@@ -24,9 +23,9 @@ public class PrimaryListPanel extends JPanel implements PanelManager<Category>
         this.add(listGUI);
     }
 
-    public void setItemPanel(CategoryPanel ip)
+    public void setCategoryPanel(CategoryPanel cp)
     {
-        theCategoryPanel = ip;
+        theCategoryPanel = cp;
     }
 
     @Override
@@ -56,7 +55,7 @@ public class PrimaryListPanel extends JPanel implements PanelManager<Category>
     @Override
     public Category[] getListData()
     {
-        return categories;
+        return categories.getCategories();
     }
 
     @Override

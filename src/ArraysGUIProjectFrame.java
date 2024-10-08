@@ -31,7 +31,7 @@ public class ArraysGUIProjectFrame extends JFrame
         this.getContentPane().add(centerPanel);
         this.getContentPane().add(rightPanel);
 
-        leftPanel.setItemPanel(centerPanel);
+        leftPanel.setCategoryPanel(centerPanel);
         centerPanel.setDetailPanel(rightPanel);
     }
 }
