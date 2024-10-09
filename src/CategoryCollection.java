@@ -88,7 +88,7 @@ public class CategoryCollection implements PanelManager<Category>
 
     /**
      * responds to the request from the user to swap the category at location "index" with the one at location "index+1"
-     * in categories. This should NOT necessitate remaking "categories" -- just editing it.
+     * in categories.
      * @param index - the selected index in the list, or -1 if nothing is selected.
      */
     @Override
@@ -101,7 +101,7 @@ public class CategoryCollection implements PanelManager<Category>
     }
 
     /**
-     * responds to the request from the user ta add an additional category to the end of the categories list.
+     * responds to the request from the user ta add a category to the end of the categories list.
      */
     @Override
     public void handleAdd()
