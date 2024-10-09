@@ -39,8 +39,7 @@ public class CategoryPanel extends JPanel implements ActionListener, ListSelecti
         this.add(contents);
         titleField = new JTextField();
         subtitleField = new JTextField();
-        JPanel itemFieldsPanel = new JPanel(new GridBagLayout());
-        fillItemFieldsPanel(itemFieldsPanel); // puts the fields and update button into the top of the panel.
+        JPanel itemFieldsPanel = fillItemFieldsPanel(); // puts the fields and update button into the top of the panel.
         contents.add(itemFieldsPanel);
 
         contents.add(itemList); // add the GUI list of categories to the bottom of the panel.
@@ -49,10 +48,11 @@ public class CategoryPanel extends JPanel implements ActionListener, ListSelecti
 
     /**
      * arranges the labels and GUI inputs to allow the user to see and edit the properties of this category.
-     * @param itemFieldsPanel - the panel in which to lay this content out.
+     * @return itemFieldsPanel - the panel in which to lay this content out.
      */
-    private void fillItemFieldsPanel(JPanel itemFieldsPanel)
+    private JPanel fillItemFieldsPanel()
     {
+        JPanel itemFieldsPanel = new JPanel(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.gridx = 0;
         constraints.gridy = 0;
@@ -78,6 +78,8 @@ public class CategoryPanel extends JPanel implements ActionListener, ListSelecti
         constraints.weightx = 1;
         constraints.anchor = GridBagConstraints.CENTER;
         itemFieldsPanel.add(updateButton, constraints);
+
+        return itemFieldsPanel;
     }
 
     /**
