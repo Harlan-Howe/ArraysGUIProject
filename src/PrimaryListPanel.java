@@ -3,9 +3,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
+import java.io.*;
 
 public class PrimaryListPanel extends JPanel implements ListSelectionListener, ActionListener
 {
@@ -37,6 +35,49 @@ public class PrimaryListPanel extends JPanel implements ListSelectionListener, A
     public void setCategoryPanel(CategoryPanel cp)
     {
         theCategoryPanel = cp;
+    }
+
+    public void handleOpenRequest()
+    {
+        JFileChooser openDialog = new JFileChooser();
+        openDialog.setSelectedFile(latestFile);
+        int response = openDialog.showOpenDialog(this);
+        if (response == JFileChooser.CANCEL_OPTION)
+            return;
+        latestFile = openDialog.getSelectedFile();
+
+        try
+        {
+            BufferedReader reader = new BufferedReader((new FileReader(latestFile)));
+            String latestLine = reader.readLine();
+            int numCategories = Integer.parseInt(latestLine);
+            theCategoryCollection = new CategoryCollection(numCategories);
+            for (int catIndex = 0; catIndex < numCategories; catIndex++)
+            {
+                String categoryDescription = reader.readLine();
+                String numItemsInCategoryString = reader.readLine();
+                int numItemsInCategory = Integer.parseInt(numItemsInCategoryString);
+                Category cat = new Category(categoryDescription, numItemsInCategory);
+                for (int itemIndex = 0; itemIndex < numItemsInCategory; itemIndex++)
+                {
+                    itemDescription = reader.readLine();
+                    Item nextItem = new Item(itemDescription);
+                    cat.setItem(nextItem, itemIndex);
+                }
+                theCategoryCollection.setCategory(cat, catIndex);
+            }
+            reader.close();
+            System.out.println("File opened.");
+            listGUI.setMyManager(theCategoryCollection);
+            theCategoryPanel.setCurrentCategory(null);
+            repaint();
+        } catch (FileNotFoundException fnfe)
+        {
+            throw new RuntimeException("Could not open the file.");
+        } catch (IOException e)
+        {
+            throw new RuntimeException("Problem reading the file once open.");
+        }
     }
 
     public void handleSaveRequest()
