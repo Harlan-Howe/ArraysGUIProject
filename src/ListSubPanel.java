@@ -6,15 +6,29 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * a reusable class that manages a JList gui element along with buttons for shifting items up/down, and add/remove.
+ * @param <ContentType> - the type of item that will be listed; the toString of this class is what will appear.
+ */
 public class ListSubPanel<ContentType> extends JPanel implements ActionListener
 {
-    public static final String NULL_LIST = "Null List";
-    public static final String FILLED_LIST = "List filled";
-    private PanelManager<ContentType> myManager;
+    // keys for the cards that are used to either show an empty pane or the JList.
+    private static final String NULL_LIST = "Null List";
+    private static final String FILLED_LIST = "List filled";
+
+    private PanelManager<ContentType> myManager; // the class that will serve as the datasource for this list.
+
+    // GUI sub-elements
     private CardLayout myCardLayout;
     private JList<ContentType> guiList;
     private JButton shiftUpButton, shiftDownButton, addButton, removeButton;
 
+    /**
+     * constructor
+     * @param manager - a class implementing PanelManager that will serve as the data source.
+     * @param listener - a class implementing ListSelectionListener that this ListSubPanel should inform if the
+     *                 user changes what is selected in the list.
+     */
     public ListSubPanel(PanelManager<ContentType> manager, ListSelectionListener listener)
     {
         super();
@@ -24,6 +38,10 @@ public class ListSubPanel<ContentType> extends JPanel implements ActionListener
         update();
     }
 
+    /**
+     * modifier of the datasource; used when switching which Category is shown, or if we are loading a new file.
+     * @param mgr - the new datasource.
+     */
     public void setMyManager(PanelManager<ContentType> mgr)
     {
         myManager = mgr;
@@ -76,9 +94,12 @@ public class ListSubPanel<ContentType> extends JPanel implements ActionListener
         return result;
     }
 
+    /**
+     * updates the appearance of the panel, based on the state of the PanelManager.
+     */
     public void update()
     {
-        if (myManager == null)
+        if (myManager == null)  // if the manager is none, indicate that gracefully - no crashes.
         {
             myCardLayout.show(this,NULL_LIST);
         }
@@ -95,6 +116,10 @@ public class ListSubPanel<ContentType> extends JPanel implements ActionListener
         }
     }
 
+    /**
+     * indicates which row in the list is currently selected. (Possibly not needed.)
+     * @return the index of the selected row, or -1 if none is selected.
+     */
     public int getSelectedIndex()
     {
         return guiList.getSelectedIndex();
@@ -102,11 +127,12 @@ public class ListSubPanel<ContentType> extends JPanel implements ActionListener
 
     /**
      * if the user clicks one of the buttons, this will call the corresponding command in the parent PanelManager.
+     * @param actEvt - the action event describing what the user did, including information about what button was pressed.
      */
     @Override
-    public void actionPerformed(ActionEvent e)
+    public void actionPerformed(ActionEvent actEvt)
     {
-        if (e.getSource() == shiftUpButton)
+        if (actEvt.getSource() == shiftUpButton)
         {
             int oldIndex = guiList.getSelectedIndex();
             if (oldIndex>0)
@@ -116,7 +142,7 @@ public class ListSubPanel<ContentType> extends JPanel implements ActionListener
                 guiList.setSelectedIndex(oldIndex - 1);
             }
         }
-        if (e.getSource() == shiftDownButton)
+        if (actEvt.getSource() == shiftDownButton)
         {
             int oldIndex = guiList.getSelectedIndex();
             if (oldIndex > -1 && oldIndex < myManager.getListData().length-1)
@@ -126,12 +152,12 @@ public class ListSubPanel<ContentType> extends JPanel implements ActionListener
                 guiList.setSelectedIndex(oldIndex + 1);
             }
         }
-        if (e.getSource() == addButton)
+        if (actEvt.getSource() == addButton)
         {
             myManager.handleAdd();
             update();
         }
-        if (e.getSource() == removeButton)
+        if (actEvt.getSource() == removeButton)
         {
             myManager.handleRemove(guiList.getSelectedIndex());
             update();
