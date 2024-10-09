@@ -5,13 +5,22 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * This class represents the middle third of the screen.
+ */
 public class CategoryPanel extends JPanel implements ActionListener, ListSelectionListener
 {
+    // GUI elements shown in this panel
     private ListSubPanel<Item> itemList;
-    private Category currentCategory;
-    private ItemPanel theItemPanel;
     private JTextField titleField, subtitleField;
-    JButton updateButton;
+    private JButton updateButton;
+
+    // the category that is currently being shown, which serves as the datasource for the GUI elements.
+    private Category currentCategory;
+
+    // a pointer to the next panel.
+    private ItemPanel theItemPanel;
+
 
     public CategoryPanel()
     {
@@ -21,6 +30,9 @@ public class CategoryPanel extends JPanel implements ActionListener, ListSelecti
         buildGUI();
     }
 
+    /**
+     * sets up the parts of the panel that the user sees.
+     */
     public void buildGUI()
     {
         Box contents = Box.createVerticalBox();
@@ -28,13 +40,17 @@ public class CategoryPanel extends JPanel implements ActionListener, ListSelecti
         titleField = new JTextField();
         subtitleField = new JTextField();
         JPanel itemFieldsPanel = new JPanel(new GridBagLayout());
-        fillItemFieldsPanel(itemFieldsPanel);
-
+        fillItemFieldsPanel(itemFieldsPanel); // puts the fields and update button into the top of the panel.
         contents.add(itemFieldsPanel);
-        contents.add(itemList);
+
+        contents.add(itemList); // add the GUI list of categories to the bottom of the panel.
 
     }
 
+    /**
+     * arranges the labels and GUI inputs to allow the user to see and edit the properties of this category.
+     * @param itemFieldsPanel - the panel in which to lay this content out.
+     */
     private void fillItemFieldsPanel(JPanel itemFieldsPanel)
     {
         GridBagConstraints constraints = new GridBagConstraints();
@@ -64,6 +80,11 @@ public class CategoryPanel extends JPanel implements ActionListener, ListSelecti
         itemFieldsPanel.add(updateButton, constraints);
     }
 
+    /**
+     * change which category should serve as the datasource for the GUI elements. This is typically called by the left
+     * panel when the user changes which category is selected in the first list.
+     * @param cat - the category to reveal, or null if no category should be shown.
+     */
     public void setCurrentCategory(Category cat)
     {
         currentCategory = cat;
@@ -78,12 +99,22 @@ public class CategoryPanel extends JPanel implements ActionListener, ListSelecti
             itemList.setMyManager(currentCategory);
         }
     }
+
+    /**
+     * establishes the link to the right panel, so that this panel can tell that one when it needs to update which item
+     * it is showing.
+     * @param ip - the ItemPanel... i.e., the rightmost panel.
+     */
     public void setItemPanel(ItemPanel ip)
     {
         theItemPanel = ip;
     }
 
 
+    /**
+     * respond to the user pressing the update button.
+     * @param e the event to be processed - info about which button was pressed.
+     */
     @Override
     public void actionPerformed(ActionEvent e)
     {
@@ -99,6 +130,11 @@ public class CategoryPanel extends JPanel implements ActionListener, ListSelecti
         }
     }
 
+    /**
+     * respond to the user changing which row in the listGUI is selected, which should pass along that information to
+     * the rightmost panel.
+     * @param e the event that characterizes the change -- includes info about which row is now selected.
+     */
     @Override
     public void valueChanged(ListSelectionEvent e)
     {
