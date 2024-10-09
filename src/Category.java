@@ -11,6 +11,17 @@ public class Category implements PanelManager<Item>
         subtitle = "No info yet.";
     }
 
+    public Category(String descriptionInfoToParse, int numItems)
+    {
+        items = new Item[numItems];
+        System.out.println(STR."I'm constructing a Category and need to turn '\{descriptionInfoToParse} into the variables for the Category class.");
+    }
+
+    public void setItem(Item it, int index)
+    {
+        // TODO: put "it" into the items array at position 'index.'
+    }
+
     public String getTitle()
     {
         return title;
