@@ -3,6 +3,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * this class represents the rightmost third of the window, where we show and edit the details about the currently
+ * selected item.
+ */
 public class ItemPanel extends JPanel implements ActionListener
 {
     JTextField nameField;
@@ -19,6 +23,9 @@ public class ItemPanel extends JPanel implements ActionListener
 
     }
 
+    /**
+     * sets up the portions of this panel that the user sees.
+     */
     public void buildGUI()
     {
         Box content = Box.createVerticalBox();
@@ -26,6 +33,8 @@ public class ItemPanel extends JPanel implements ActionListener
         JPanel smallItemsPanel = new JPanel(new GridBagLayout());
         buildContentInSmallItemsPanel(smallItemsPanel);
         content.add(smallItemsPanel);
+
+        // set up a larger text area, if desired.
         detailTextArea = new JTextArea(20,20);
         detailTextArea.setLineWrap(true);
         detailTextArea.setWrapStyleWord(true);
@@ -33,12 +42,18 @@ public class ItemPanel extends JPanel implements ActionListener
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         content.add(detailScroller);
+
+        // add a button at the bottom to allow the user to update the data.
         updateButton = new JButton("Update");
         updateButton.addActionListener(this);
         content.add(updateButton);
 
     }
 
+    /**
+     * a submethod of buildGUI, this assembles the table of labels and small GUI controls.
+     * @param panel
+     */
     public void buildContentInSmallItemsPanel(JPanel panel)
     {
         GridBagConstraints constraints = new GridBagConstraints();
@@ -61,6 +76,10 @@ public class ItemPanel extends JPanel implements ActionListener
         panel.add(statusCheckBox, constraints);
     }
 
+    /**
+     * changes which item's data is being displayed in this panel.
+     * @param item - the item to which we are changing, or null if no item should be shown.
+     */
     public void setCurrentItem(Item item)
     {
         currentItem = item;
@@ -74,6 +93,10 @@ public class ItemPanel extends JPanel implements ActionListener
         }
     }
 
+    /**
+     * respond to the user pressing the update button, changing the data stored in the current item.
+     * @param e the event to be processed, which contains information about which button was pressed.
+     */
     @Override
     public void actionPerformed(ActionEvent e)
     {
