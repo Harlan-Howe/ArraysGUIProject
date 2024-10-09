@@ -8,11 +8,21 @@ public class CategoryCollection implements PanelManager<Category>
         categories[0] = new Category();
     }
 
+    public CategoryCollection(int numCategories)
+    {
+        categories = new Category[numCategories];
+    }
+
     public Category getCategoryAtIndex(int index)
     {
         if (index == -1)
             return null;
         return categories[index];
+    }
+
+    public void setCategory(Category cat, int index)
+    {
+        categories[index] = cat;
     }
 
     public String getSaveString()

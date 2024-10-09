@@ -60,7 +60,7 @@ public class PrimaryListPanel extends JPanel implements ListSelectionListener, A
                 Category cat = new Category(categoryDescription, numItemsInCategory);
                 for (int itemIndex = 0; itemIndex < numItemsInCategory; itemIndex++)
                 {
-                    itemDescription = reader.readLine();
+                    String itemDescription = reader.readLine();
                     Item nextItem = new Item(itemDescription);
                     cat.setItem(nextItem, itemIndex);
                 }
