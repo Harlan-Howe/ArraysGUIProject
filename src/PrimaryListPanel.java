@@ -92,7 +92,7 @@ public class PrimaryListPanel extends JPanel implements ListSelectionListener, A
         System.out.println(stringToSave);
         try (PrintWriter fileOut = new PrintWriter(latestFile)) {
             fileOut.println(stringToSave);
-            System.out.println("Saved.");
+            System.out.println(STR."Saved to \{latestFile.getPath()}");
         } catch (FileNotFoundException e)
         {
             System.out.println(STR."Error opening file: \{latestFile.getPath()}");
