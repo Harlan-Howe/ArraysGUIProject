@@ -159,6 +159,18 @@ public class PrimaryListPanel extends JPanel implements ListSelectionListener, A
         handleSaveRequest();
     }
 
+    /**
+     * erases all items in this file and replaces them with a new set, equivalent to restarting the program.
+     */
+    public void handleNewRequest()
+    {
+        theCategoryCollection = new CategoryCollection();
+        listGUI.setMyManager(theCategoryCollection);
+        theCategoryPanel.setCurrentCategory(null);
+
+        // tell everything on screen that it needs to update.
+        repaint();
+    }
 
     /**
      * this gets called if the user changes which item in the list of categories is selected, in which case we'll need to
@@ -185,7 +197,7 @@ public class PrimaryListPanel extends JPanel implements ListSelectionListener, A
             handleSaveAsRequest();
         else if (e.getActionCommand().equals("Open..."))
             handleOpenRequest();
-//        else if (e.getActionCommand().equals("New"))
-//            handleNewRequest();
+        else if (e.getActionCommand().equals("New"))
+            handleNewRequest();
     }
 }
