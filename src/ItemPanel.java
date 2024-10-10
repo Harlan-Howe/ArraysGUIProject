@@ -58,7 +58,9 @@ public class ItemPanel extends JPanel implements ActionListener
     {
         GridBagConstraints constraints = new GridBagConstraints();
         nameField = new JTextField();
+        nameField.setEditable(false);
         statusCheckBox = new JCheckBox();
+        statusCheckBox.setEnabled(false);
         constraints.gridx = 0;
         constraints.gridy = 0;
         constraints.weightx = 0.33;
@@ -86,10 +88,12 @@ public class ItemPanel extends JPanel implements ActionListener
         if (currentItem == null)
         {
             nameField.setText("");
+            nameField.setEditable(false);
         }
         else
         {
             nameField.setText(currentItem.getName());
+            nameField.setEditable(true);
         }
     }
 
@@ -107,7 +111,7 @@ public class ItemPanel extends JPanel implements ActionListener
             if (currentItem != null)
             {
                 currentItem.setName(nameField.getText());
-                getParent().repaint();
+                getParent().repaint(); // tell the window to refresh at the next opportunity.
             }
         }
     }
