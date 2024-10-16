@@ -58,7 +58,7 @@ public class ItemPanel extends JPanel implements ActionListener
     {
         GridBagConstraints constraints = new GridBagConstraints();
         nameField = new JTextField();
-        nameField.setEditable(false);
+        nameField.setEnabled(false);
         statusCheckBox = new JCheckBox();
         statusCheckBox.setEnabled(false);
         constraints.gridx = 0;
@@ -88,12 +88,13 @@ public class ItemPanel extends JPanel implements ActionListener
         if (currentItem == null)
         {
             nameField.setText("");
-            nameField.setEditable(false);
+            nameField.setEnabled(false);
+
         }
         else
         {
             nameField.setText(currentItem.getName());
-            nameField.setEditable(true);
+            nameField.setEnabled(true);
         }
     }
 

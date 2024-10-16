@@ -39,6 +39,8 @@ public class CategoryPanel extends JPanel implements ActionListener, ListSelecti
         this.add(contents);
         titleField = new JTextField();
         subtitleField = new JTextField();
+        titleField.setEnabled(false);
+        subtitleField.setEnabled(false);
         JPanel itemFieldsPanel = fillItemFieldsPanel(); // puts the fields and update button into the top of the panel.
         contents.add(itemFieldsPanel);
 
@@ -94,11 +96,15 @@ public class CategoryPanel extends JPanel implements ActionListener, ListSelecti
         {
             titleField.setText("");
             itemList.setMyManager(null);
+            titleField.setEnabled(false);
+            itemList.setEnabled(false);
         }
         else
         {
             titleField.setText(currentCategory.getTitle());
             itemList.setMyManager(currentCategory);
+            titleField.setEnabled(true);
+            itemList.setEnabled(true);
         }
         theItemPanel.setCurrentItem(null);
     }
