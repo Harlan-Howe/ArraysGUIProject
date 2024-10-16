@@ -38,6 +38,7 @@ public class ItemPanel extends JPanel implements ActionListener
         detailTextArea = new JTextArea(20,20);
         detailTextArea.setLineWrap(true);
         detailTextArea.setWrapStyleWord(true);
+        detailTextArea.setEnabled(false);
         JScrollPane detailScroller = new JScrollPane(detailTextArea,
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -90,6 +91,8 @@ public class ItemPanel extends JPanel implements ActionListener
         {
             nameField.setText("");
             nameField.setEnabled(false);
+            statusCheckBox.setEnabled(false);
+            detailTextArea.setEnabled(false);
             updateButton.setEnabled(false);
 
         }
@@ -97,6 +100,8 @@ public class ItemPanel extends JPanel implements ActionListener
         {
             nameField.setText(currentItem.getName());
             nameField.setEnabled(true);
+            statusCheckBox.setEnabled(true);
+            detailTextArea.setEnabled(true);
             updateButton.setEnabled(true);
         }
     }
