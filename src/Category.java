@@ -8,7 +8,8 @@ public class Category implements PanelManager<Item>
 {
     private Item[] items;
     // attributes
-    private String title, subtitle; // TODO: edit this list to reflect the design of your Category.
+    private String artist; // TODO: edit this list to reflect the design of your Category.
+    private int whichGenre;
 
     /**
      * default constructor - makes a new Category object with default attributes and one default Item.
@@ -18,8 +19,8 @@ public class Category implements PanelManager<Item>
         items = new Item[1];
         items[0] = new Item();
         // TODO: set default values for the attributes of your category.
-        title = "Generic";
-        subtitle = "No info yet.";
+        artist = "Generic";
+        whichGenre = 0;
     }
 
     /**
@@ -33,6 +34,9 @@ public class Category implements PanelManager<Item>
     {
         items = new Item[numItems];
         System.out.println(STR."I'm constructing a Category and need to turn '\{descriptionInfoToParse} into the variables for the Category class.");
+        String[] parts = descriptionInfoToParse.split("\t");
+        artist = parts[0];
+        whichGenre = Integer.parseInt(parts[1]);
     }
 
     /**
@@ -43,6 +47,7 @@ public class Category implements PanelManager<Item>
     public void setItem(Item it, int index)
     {
         // TODO: put "it" into the items array at position 'index.'
+        items[index] = it;
     }
 
     /**
@@ -58,14 +63,14 @@ public class Category implements PanelManager<Item>
     }
 
     // TODO: write accessors and modifiers for the attributes in your class, possibly replacing the ones here:
-    public String getTitle()
+    public String getArtist()
     {
-        return title;
+        return artist;
     }
 
-    public void setTitle(String s)
+    public void setArtist(String s)
     {
-        title = s;
+        artist = s;
     }
 
     /**
@@ -76,7 +81,7 @@ public class Category implements PanelManager<Item>
     public String toString()
     {
         // TODO: you write this, based on your attributes and preferences.
-        return title;
+        return artist;
     }
 
     /**
@@ -92,7 +97,7 @@ public class Category implements PanelManager<Item>
         StringBuilder builder = new StringBuilder();
         // ----------------------------
         // TODO: you write this.
-        builder.append(STR."\{title}\t\{subtitle}\n");
+        builder.append(STR."\{artist}\t\{whichGenre}\n");
         builder.append(STR."\{items.length}\n");
         for (int i=0; i<items.length; i++)
             builder.append(items[i].getSaveString());
