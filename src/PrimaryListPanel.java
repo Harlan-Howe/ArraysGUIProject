@@ -63,14 +63,14 @@ public class PrimaryListPanel extends JPanel implements ListSelectionListener, A
             BufferedReader reader = new BufferedReader((new FileReader(latestFile))); // open the file.
             // read the first line, the number of categories in this file.
             String latestLine = reader.readLine(); // it comes in as a string
-            int numCategories = Integer.parseInt(latestLine); // convert to a number.
+            int numCategories = Integer.parseInt(latestLine.split("\t")[0]); // convert to a number.
             theCategoryCollection = new CategoryCollection(numCategories); // create a new CategoryCollection with space for the categories.
 
             // loop through the file to load each category
             for (int catIndex = 0; catIndex < numCategories; catIndex++)
             {
                 String categoryDescription = reader.readLine(); // get the tab-delimited list of properties of the category
-                String numItemsInCategoryString = reader.readLine(); // get a string for the number of items...
+                String numItemsInCategoryString = reader.readLine().split("\t")[0]; // get a string for the number of items...
                 int numItemsInCategory = Integer.parseInt(numItemsInCategoryString);  // ... convert to an int, and...
                 Category cat = new Category(categoryDescription, numItemsInCategory); // create a new category with the list of properties and enough space for the items.
 
@@ -180,8 +180,8 @@ public class PrimaryListPanel extends JPanel implements ListSelectionListener, A
     @Override
     public void valueChanged(ListSelectionEvent e)
     {
-        System.out.println(STR."The user just changed the selection in the list to #\{e.getFirstIndex()}. I should probably do something about that.");
-        theCategoryPanel.setCurrentCategory(theCategoryCollection.getCategoryAtIndex(e.getFirstIndex()));
+        System.out.println(STR."The user just changed the selection in the list to #\{listGUI.getSelectedIndex()}. I should probably do something about that.");
+        theCategoryPanel.setCurrentCategory(theCategoryCollection.getCategoryAtIndex(listGUI.getSelectedIndex()));
     }
 
     /**
