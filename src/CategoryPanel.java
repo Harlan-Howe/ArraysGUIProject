@@ -12,7 +12,7 @@ public class CategoryPanel extends JPanel implements ActionListener, ListSelecti
 {
     // GUI elements shown in this panel
     private ListSubPanel<Item> itemList;
-    private JTextField titleField;
+    private JTextField artistField;
     private JComboBox<String> genreCB;
     private final String[] genreList = {"R & B", "Rock", "Pop", "Jazz", "Symphonic"};
 
@@ -40,7 +40,7 @@ public class CategoryPanel extends JPanel implements ActionListener, ListSelecti
     {
         Box contents = Box.createVerticalBox();
         this.add(contents);
-        titleField = new JTextField();
+        artistField = new JTextField();
         genreCB = new JComboBox<String>();
         for (String s: genreList)
             genreCB.addItem(s);
@@ -72,7 +72,7 @@ public class CategoryPanel extends JPanel implements ActionListener, ListSelecti
         constraints.weightx = 0.67;
         constraints.anchor = GridBagConstraints.LINE_START;
         constraints.fill = GridBagConstraints.HORIZONTAL;
-        itemFieldsPanel.add(titleField, constraints);
+        itemFieldsPanel.add(artistField, constraints);
         constraints.gridy = 1;
         itemFieldsPanel.add(genreCB, constraints);
         updateButton = new JButton("Update");
@@ -97,13 +97,13 @@ public class CategoryPanel extends JPanel implements ActionListener, ListSelecti
         currentCategory = cat;
         if (currentCategory == null)
         {
-            titleField.setText("");
+            artistField.setText("");
             genreCB.setSelectedIndex(-1);
             itemList.setMyManager(null);
         }
         else
         {
-            titleField.setText(currentCategory.getArtist());
+            artistField.setText(currentCategory.getArtist());
             genreCB.setSelectedIndex(currentCategory.getWhichGenre());
             itemList.setMyManager(currentCategory);
         }
@@ -131,10 +131,10 @@ public class CategoryPanel extends JPanel implements ActionListener, ListSelecti
         if (e.getSource() == updateButton)
         {
             System.out.println("User just pressed update. I should probably update the non-array parts of the current Category.");
-            System.out.println(STR."The new title should be '\{titleField.getText()}' and the subtitle should be '\{genreCB.getSelectedIndex()}.'");
+            System.out.println(STR."The new title should be '\{artistField.getText()}' and the subtitle should be '\{genreCB.getSelectedIndex()}.'");
             if (currentCategory != null)
             {
-                currentCategory.setArtist(titleField.getText());
+                currentCategory.setArtist(artistField.getText());
                 currentCategory.setWhichGenre(genreCB.getSelectedIndex());
                 getParent().repaint();
             }
