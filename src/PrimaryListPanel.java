@@ -63,7 +63,7 @@ public class PrimaryListPanel extends JPanel implements ListSelectionListener, A
             BufferedReader reader = new BufferedReader((new FileReader(latestFile))); // open the file.
             // read the first line, the number of categories in this file.
             String latestLine = reader.readLine(); // it comes in as a string
-            int numCategories = Integer.parseInt(latestLine); // convert to a number.
+            int numCategories = Integer.parseInt(latestLine.split("\t")[0]); // convert to a number.
             theCategoryCollection = new CategoryCollection(numCategories); // create a new CategoryCollection with space for the categories.
 
             // loop through the file to load each category
