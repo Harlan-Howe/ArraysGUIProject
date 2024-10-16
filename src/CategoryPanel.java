@@ -12,7 +12,10 @@ public class CategoryPanel extends JPanel implements ActionListener, ListSelecti
 {
     // GUI elements shown in this panel
     private ListSubPanel<Item> itemList;
-    private JTextField titleField, subtitleField;
+    private JTextField titleField;
+    private JComboBox<String> genreCB;
+    private final String[] genreList = {"R & B", "Rock", "Pop", "Jazz", "Symphonic"};
+
     private JButton updateButton;
 
     // the category that is currently being shown, which serves as the datasource for the GUI elements.
@@ -38,7 +41,9 @@ public class CategoryPanel extends JPanel implements ActionListener, ListSelecti
         Box contents = Box.createVerticalBox();
         this.add(contents);
         titleField = new JTextField();
-        subtitleField = new JTextField();
+        genreCB = new JComboBox<String>();
+        for (String s: genreList)
+            genreCB.addItem(s);
         JPanel itemFieldsPanel = fillItemFieldsPanel(); // puts the fields and update button into the top of the panel.
         contents.add(itemFieldsPanel);
 
@@ -69,7 +74,7 @@ public class CategoryPanel extends JPanel implements ActionListener, ListSelecti
         constraints.fill = GridBagConstraints.HORIZONTAL;
         itemFieldsPanel.add(titleField, constraints);
         constraints.gridy = 1;
-        itemFieldsPanel.add(subtitleField, constraints);
+        itemFieldsPanel.add(genreCB, constraints);
         updateButton = new JButton("Update");
         updateButton.addActionListener(this);
         constraints.gridx = 0;
@@ -93,11 +98,13 @@ public class CategoryPanel extends JPanel implements ActionListener, ListSelecti
         if (currentCategory == null)
         {
             titleField.setText("");
+            genreCB.setSelectedIndex(-1);
             itemList.setMyManager(null);
         }
         else
         {
             titleField.setText(currentCategory.getArtist());
+            genreCB.setSelectedIndex(currentCategory.getWhichGenre());
             itemList.setMyManager(currentCategory);
         }
         theItemPanel.setCurrentItem(null);
@@ -124,10 +131,11 @@ public class CategoryPanel extends JPanel implements ActionListener, ListSelecti
         if (e.getSource() == updateButton)
         {
             System.out.println("User just pressed update. I should probably update the non-array parts of the current Category.");
-            System.out.println(STR."The new title should be '\{titleField.getText()}' and the subtitle should be '\{subtitleField.getText()}.'");
+            System.out.println(STR."The new title should be '\{titleField.getText()}' and the subtitle should be '\{genreCB.getSelectedIndex()}.'");
             if (currentCategory != null)
             {
                 currentCategory.setArtist(titleField.getText());
+                currentCategory.setWhichGenre(genreCB.getSelectedIndex());
                 getParent().repaint();
             }
         }
