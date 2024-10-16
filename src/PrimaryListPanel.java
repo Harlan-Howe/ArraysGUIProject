@@ -180,8 +180,8 @@ public class PrimaryListPanel extends JPanel implements ListSelectionListener, A
     @Override
     public void valueChanged(ListSelectionEvent e)
     {
-        System.out.println(STR."The user just changed the selection in the list to #\{e.getFirstIndex()}. I should probably do something about that.");
-        theCategoryPanel.setCurrentCategory(theCategoryCollection.getCategoryAtIndex(e.getFirstIndex()));
+        System.out.println(STR."The user just changed the selection in the list to #\{listGUI.getSelectedIndex()}. I should probably do something about that.");
+        theCategoryPanel.setCurrentCategory(theCategoryCollection.getCategoryAtIndex(listGUI.getSelectedIndex()));
     }
 
     /**
