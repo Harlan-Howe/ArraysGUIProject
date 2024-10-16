@@ -74,6 +74,7 @@ public class CategoryPanel extends JPanel implements ActionListener, ListSelecti
         itemFieldsPanel.add(subtitleField, constraints);
         updateButton = new JButton("Update");
         updateButton.addActionListener(this);
+        updateButton.setEnabled(false);
         constraints.gridx = 0;
         constraints.gridy = 2;
         constraints.gridwidth = 2;
@@ -98,6 +99,7 @@ public class CategoryPanel extends JPanel implements ActionListener, ListSelecti
             itemList.setMyManager(null);
             titleField.setEnabled(false);
             itemList.setEnabled(false);
+            updateButton.setEnabled(false);
         }
         else
         {
@@ -105,6 +107,7 @@ public class CategoryPanel extends JPanel implements ActionListener, ListSelecti
             itemList.setMyManager(currentCategory);
             titleField.setEnabled(true);
             itemList.setEnabled(true);
+            updateButton.setEnabled(false);
         }
         theItemPanel.setCurrentItem(null);
     }
