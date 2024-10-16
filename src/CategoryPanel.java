@@ -64,9 +64,9 @@ public class CategoryPanel extends JPanel implements ActionListener, ListSelecti
         constraints.weightx = 0.33;
         constraints.weighty = 1;
         constraints.anchor = GridBagConstraints.LINE_END;
-        itemFieldsPanel.add(new JLabel("Title"), constraints);
+        itemFieldsPanel.add(new JLabel("Artist"), constraints);
         constraints.gridy = 1;
-        itemFieldsPanel.add(new JLabel("Subtitle"), constraints);
+        itemFieldsPanel.add(new JLabel("Genre"), constraints);
         constraints.gridx = 1;
         constraints.gridy = 0;
         constraints.weightx = 0.67;
