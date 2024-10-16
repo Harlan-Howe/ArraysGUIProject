@@ -6,7 +6,8 @@
 public class Item
 {
     // TODO: edit this to reflect the design of your Item class.
-    private String name;
+    private String title, album;
+    private int minutes, seconds;
 
     /**
      * default constructor
@@ -14,7 +15,10 @@ public class Item
     public Item()
     {
         // TODO: rewrite this to set the default values of new Item instances
-        name = STR."Item #\{(int)(1000*Math.random())}"; // temp code: currently generating a randomized title.
+        title = STR."Song #\{(int)(1000*Math.random())}"; // temp code: currently generating a randomized title.
+        album = "None";
+        minutes = 0;
+        seconds = 0;
     }
 
     /**
@@ -25,18 +29,54 @@ public class Item
     public Item(String lineToDecode)
     {
         // TODO: parse the data in lineToDecode to fill in the variables for this class.
-        //Note: see the note in getSaveString(), below regarding tabs and carriage returns.
+        String parts[] = lineToDecode.split("\t");
+        title = parts[0];
+        album = parts[1];
+        minutes = Integer.parseInt(parts[2]);
+        seconds = Integer.parseInt(parts[3]);
     }
 
     // TODO: write accessors and modifiers for your attributes, possibly replacing mine.
-    public String getName()
+
+
+    public String getTitle()
     {
-        return name;
+        return title;
     }
 
-    public void setName(String s)
+    public void setTitle(String title)
     {
-        name = s;
+        this.title = title;
+    }
+
+    public String getAlbum()
+    {
+        return album;
+    }
+
+    public void setAlbum(String album)
+    {
+        this.album = album;
+    }
+
+    public int getMinutes()
+    {
+        return minutes;
+    }
+
+    public void setMinutes(int minutes)
+    {
+        this.minutes = minutes;
+    }
+
+    public int getSeconds()
+    {
+        return seconds;
+    }
+
+    public void setSeconds(int seconds)
+    {
+        this.seconds = seconds;
     }
 
     /**
@@ -48,7 +88,7 @@ public class Item
     public String toString()
     {
         // TODO: you write this, based on your attributes and preferences.
-        return name;
+        return STR."\{title} (\{album}";
     }
 
     /**
@@ -63,6 +103,6 @@ public class Item
         //      breaks in it. You will probably want to replace these with some other characters, or this will mess up
         //      the expectation that the fields are separated by tabs and this composes a single line.
         //      This time, you may make use of String's built-in replace() method.
-        return STR."\{name}\n";
+        return STR."\{title}\t\{album}\t\{minutes}\t\{seconds}\n";
     }
 }
