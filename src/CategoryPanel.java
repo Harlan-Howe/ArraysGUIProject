@@ -98,6 +98,7 @@ public class CategoryPanel extends JPanel implements ActionListener, ListSelecti
             titleField.setText("");
             itemList.setMyManager(null);
             titleField.setEnabled(false);
+            subtitleField.setEnabled(false);
             itemList.setEnabled(false);
             updateButton.setEnabled(false);
         }
@@ -106,8 +107,9 @@ public class CategoryPanel extends JPanel implements ActionListener, ListSelecti
             titleField.setText(currentCategory.getTitle());
             itemList.setMyManager(currentCategory);
             titleField.setEnabled(true);
+            subtitleField.setEnabled(true);
             itemList.setEnabled(true);
-            updateButton.setEnabled(false);
+            updateButton.setEnabled(true);
         }
         theItemPanel.setCurrentItem(null);
     }
