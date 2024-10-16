@@ -46,6 +46,7 @@ public class ItemPanel extends JPanel implements ActionListener
         // add a button at the bottom to allow the user to update the data.
         updateButton = new JButton("Update");
         updateButton.addActionListener(this);
+        updateButton.setEnabled(false);
         content.add(updateButton);
 
     }
@@ -89,12 +90,14 @@ public class ItemPanel extends JPanel implements ActionListener
         {
             nameField.setText("");
             nameField.setEnabled(false);
+            updateButton.setEnabled(false);
 
         }
         else
         {
             nameField.setText(currentItem.getName());
             nameField.setEnabled(true);
+            updateButton.setEnabled(true);
         }
     }
 
