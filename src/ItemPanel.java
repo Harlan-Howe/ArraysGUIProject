@@ -61,8 +61,8 @@ public class ItemPanel extends JPanel implements ActionListener
         GridBagConstraints constraints = new GridBagConstraints();
         titleField = new JTextField();
         albumField = new JTextField();
-        minutesSpinner = new JSpinner();
-        secondsSpinner = new JSpinner();
+        minutesSpinner = new JSpinner(new SpinnerNumberModel(0,0,15,1));
+        secondsSpinner = new JSpinner(new SpinnerNumberModel(0,0,59,1));
         constraints.gridx = 0;
         constraints.gridy = 0;
         constraints.weightx = 0.2;
@@ -107,11 +107,15 @@ public class ItemPanel extends JPanel implements ActionListener
         {
             titleField.setText("");
             albumField.setText("");
+            minutesSpinner.setValue(0);
+            secondsSpinner.setValue(0);
         }
         else
         {
             titleField.setText(currentItem.getTitle());
             albumField.setText(currentItem.getAlbum());
+            minutesSpinner.setValue(currentItem.getMinutes());
+            secondsSpinner.setValue(currentItem.getSeconds());
         }
     }
 
@@ -130,6 +134,8 @@ public class ItemPanel extends JPanel implements ActionListener
             {
                 currentItem.setTitle(titleField.getText());
                 currentItem.setAlbum(albumField.getText());
+                currentItem.setMinutes(((SpinnerNumberModel)minutesSpinner.getModel()).getNumber().intValue());
+                currentItem.setSeconds(((SpinnerNumberModel)secondsSpinner.getModel()).getNumber().intValue());
                 getParent().repaint();
             }
         }
