@@ -97,7 +97,7 @@ public class CategoryPanel extends JPanel implements ActionListener, ListSelecti
         }
         else
         {
-            titleField.setText(currentCategory.getTitle());
+            titleField.setText(currentCategory.getArtist());
             itemList.setMyManager(currentCategory);
         }
         theItemPanel.setCurrentItem(null);
@@ -127,7 +127,7 @@ public class CategoryPanel extends JPanel implements ActionListener, ListSelecti
             System.out.println(STR."The new title should be '\{titleField.getText()}' and the subtitle should be '\{subtitleField.getText()}.'");
             if (currentCategory != null)
             {
-                currentCategory.setTitle(titleField.getText());
+                currentCategory.setArtist(titleField.getText());
                 getParent().repaint();
             }
         }
