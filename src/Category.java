@@ -73,6 +73,16 @@ public class Category implements PanelManager<Item>
         artist = s;
     }
 
+    public int getWhichGenre()
+    {
+        return whichGenre;
+    }
+
+    public void setWhichGenre(int whichGenre)
+    {
+        this.whichGenre = whichGenre;
+    }
+
     /**
      * a string description of this Category instance; this is what determines how this category is represented in the
      * list in the first panel. It does not have to include all the information from all the attributes.
