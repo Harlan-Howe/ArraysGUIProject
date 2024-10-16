@@ -9,9 +9,10 @@ import java.awt.event.ActionListener;
  */
 public class ItemPanel extends JPanel implements ActionListener
 {
-    JTextField nameField;
-    JCheckBox statusCheckBox;
-    JTextArea detailTextArea;
+    JTextField titleField, albumField;
+    JSpinner minutesSpinner, secondsSpinner;
+//    JCheckBox statusCheckBox;
+//    JTextArea detailTextArea;
     JButton updateButton;
     Item currentItem;
 
@@ -35,13 +36,13 @@ public class ItemPanel extends JPanel implements ActionListener
         content.add(smallItemsPanel);
 
         // set up a larger text area, if desired.
-        detailTextArea = new JTextArea(20,20);
-        detailTextArea.setLineWrap(true);
-        detailTextArea.setWrapStyleWord(true);
-        JScrollPane detailScroller = new JScrollPane(detailTextArea,
-                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        content.add(detailScroller);
+//        detailTextArea = new JTextArea(20,20);
+//        detailTextArea.setLineWrap(true);
+//        detailTextArea.setWrapStyleWord(true);
+//        JScrollPane detailScroller = new JScrollPane(detailTextArea,
+//                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+//                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+//        content.add(detailScroller);
 
         // add a button at the bottom to allow the user to update the data.
         updateButton = new JButton("Update");
@@ -57,23 +58,35 @@ public class ItemPanel extends JPanel implements ActionListener
     public void buildContentInSmallItemsPanel(JPanel panel)
     {
         GridBagConstraints constraints = new GridBagConstraints();
-        nameField = new JTextField();
-        statusCheckBox = new JCheckBox();
+        titleField = new JTextField();
+        albumField = new JTextField();
+        minutesSpinner = new JSpinner();
+        secondsSpinner = new JSpinner();
         constraints.gridx = 0;
         constraints.gridy = 0;
-        constraints.weightx = 0.33;
+        constraints.weightx = 0.2;
         constraints.anchor = GridBagConstraints.LINE_END;
-        panel.add(new JLabel("Name"), constraints);
+        panel.add(new JLabel("Title"), constraints);
         constraints.gridy = 1;
-        panel.add(new JLabel("Status"), constraints);
+        panel.add(new JLabel("Album"), constraints);
+        constraints.gridy = 2;
+        panel.add(new JLabel("Duration"), constraints);
         constraints.gridx = 1;
         constraints.gridy = 0;
-        constraints.weightx = 0.67;
+        constraints.weightx = 0.8;
         constraints.anchor = GridBagConstraints.LINE_START;
         constraints.fill = GridBagConstraints.HORIZONTAL;
-        panel.add(nameField, constraints);
+        constraints.gridwidth = 3;
+        panel.add(titleField, constraints);
         constraints.gridy = 1;
-        panel.add(statusCheckBox, constraints);
+        panel.add(albumField, constraints);
+        constraints.gridy = 2;
+        constraints.gridwidth =1;
+        panel.add(minutesSpinner, constraints);
+        constraints.gridx = 2;
+        panel.add(new JLabel(":"),constraints);
+        constraints.gridx = 3;
+        panel.add(secondsSpinner, constraints);
     }
 
     /**
@@ -85,11 +98,13 @@ public class ItemPanel extends JPanel implements ActionListener
         currentItem = item;
         if (currentItem == null)
         {
-            nameField.setText("");
+            titleField.setText("");
+            albumField.setText("");
         }
         else
         {
-            nameField.setText(currentItem.getName());
+            titleField.setText(currentItem.getTitle());
+            albumField.setText(currentItem.getAlbum());
         }
     }
 
@@ -103,10 +118,11 @@ public class ItemPanel extends JPanel implements ActionListener
         if (e.getSource() == updateButton)
         {
             System.out.println("The user just pressed the update button. I should alter the current item's details based on the controls in this panel.");
-            System.out.println(STR."Name should now be '\{nameField.getText()}', status should be \{statusCheckBox.isSelected()}, and the detail should be '\{detailTextArea.getText()}'");
+//            System.out.println(STR."Name should now be '\{nameField.getText()}', status should be \{statusCheckBox.isSelected()}, and the detail should be '\{detailTextArea.getText()}'");
             if (currentItem != null)
             {
-                currentItem.setName(nameField.getText());
+                currentItem.setTitle(titleField.getText());
+                currentItem.setAlbum(albumField.getText());
                 getParent().repaint();
             }
         }
