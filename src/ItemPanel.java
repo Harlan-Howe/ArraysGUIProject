@@ -29,11 +29,13 @@ public class ItemPanel extends JPanel implements ActionListener
      */
     public void buildGUI()
     {
-        Box content = Box.createVerticalBox();
-        this.add(content);
-        JPanel smallItemsPanel = new JPanel(new GridBagLayout());
-        buildContentInSmallItemsPanel(smallItemsPanel);
-        content.add(smallItemsPanel);
+//        Box content = Box.createVerticalBox();
+//
+//        this.add(content);
+//        this.setLayout(new GridLayout(1,1));
+//        JPanel smallItemsPanel = new JPanel(new GridBagLayout());
+        this.setLayout(new GridBagLayout());
+        buildContentInSmallItemsPanel(this);
 
         // set up a larger text area, if desired.
 //        detailTextArea = new JTextArea(20,20);
@@ -45,9 +47,8 @@ public class ItemPanel extends JPanel implements ActionListener
 //        content.add(detailScroller);
 
         // add a button at the bottom to allow the user to update the data.
-        updateButton = new JButton("Update");
-        updateButton.addActionListener(this);
-        content.add(updateButton);
+
+
 
     }
 
@@ -87,6 +88,12 @@ public class ItemPanel extends JPanel implements ActionListener
         panel.add(new JLabel(":"),constraints);
         constraints.gridx = 3;
         panel.add(secondsSpinner, constraints);
+        constraints.gridy = 3;
+        constraints.gridx = 0;
+        constraints.gridwidth = 4;
+        updateButton = new JButton("Update");
+        updateButton.addActionListener(this);
+        panel.add(updateButton,constraints);
     }
 
     /**
