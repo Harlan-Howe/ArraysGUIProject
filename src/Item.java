@@ -88,7 +88,7 @@ public class Item
     public String toString()
     {
         // TODO: you write this, based on your attributes and preferences.
-        return STR."\{title} (\{album}";
+        return STR."\{title} (\{album})";
     }
 
     /**
