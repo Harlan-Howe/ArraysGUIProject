@@ -82,6 +82,9 @@ public class CategoryCollection implements PanelManager<Category>
     {
         System.out.println(STR."User would like to shift the Item at \{index} up.");
         // TODO: you write this.
+        Category temp = categories[index];
+        categories[index] = categories[index-1];
+        categories[index-1] = temp;
         //This should NOT necessitate remaking "categories" -- just editing it.
 
     }
@@ -97,7 +100,9 @@ public class CategoryCollection implements PanelManager<Category>
         System.out.println(STR."User would like to shift the Item at \{index} down.");
         // TODO: you write this.
         //This should NOT necessitate remaking "categories" -- just editing it.
-
+        Category temp = categories[index];
+        categories[index] = categories[index+1];
+        categories[index+1] = temp;
     }
 
     /**
@@ -112,6 +117,14 @@ public class CategoryCollection implements PanelManager<Category>
         // b) copy over the existing data in "categories" to the new array
         // c) make a new Category object and put it into the new array
         // d) update "categories" to be this new array, replacing the old one.
+        Category[] biggerList = new Category[categories.length+1];
+        for (int i=0; i<categories.length; i++)
+        {
+            biggerList[i] = categories[i];
+        }
+        biggerList[categories.length] = new Category();
+        categories = biggerList;
+
     }
 
     /**
@@ -128,6 +141,17 @@ public class CategoryCollection implements PanelManager<Category>
         // b) make a new array of Categories that is the proper size
         // c) copy all the Category objects from the existing "categories" array into this one -- except the one at "index."
         // d) update "categories" to be this new array, replacing the old one.
+        Category[] smallerList = new Category[categories.length-1];
+        int destination = 0;
+        for (int i=0; i<categories.length; i++)
+        {
+            if (index != i)
+            {
+                smallerList[destination] = categories[i];
+                destination++;
+            }
+        }
+        categories=smallerList;
     }
 
     /**
