@@ -18,6 +18,7 @@ public class Category implements PanelManager<Item>
         items = new Item[1];
         items[0] = new Item();
         // TODO: set default values for the attributes of your category.
+        // you'll probably replace the following:
         title = "Generic";
         subtitle = "No info yet.";
     }
@@ -42,7 +43,7 @@ public class Category implements PanelManager<Item>
      */
     public void setItem(Item it, int index)
     {
-        // TODO: put "it" into the items array at position 'index.'
+        // TODO: write this code for setItem, putting "it" into the items array at position 'index.'
     }
 
     /**
@@ -75,7 +76,8 @@ public class Category implements PanelManager<Item>
      */
     public String toString()
     {
-        // TODO: you write this, based on your attributes and preferences.
+        // TODO: you write code for toString, based on _your_ attributes and preferences.
+        // you do not have to use all of them... just what you want to appear in the list of Categories.
         return title;
     }
 
@@ -91,7 +93,7 @@ public class Category implements PanelManager<Item>
     {
         StringBuilder builder = new StringBuilder();
         // ----------------------------
-        // TODO: you write this.
+        // TODO: you write this code for getSaveString.
 
 
         // ---------------------------
@@ -107,7 +109,7 @@ public class Category implements PanelManager<Item>
     public void handleShiftUp(int index)
     {
         System.out.println(STR."User would like to shift the Item at \{index} up.");
-        // TODO: you write this.
+        // TODO: you write this code for handleShiftUp.
         //This should NOT necessitate remaking "items" -- just editing it.
     }
 
@@ -120,7 +122,7 @@ public class Category implements PanelManager<Item>
     public void handleShiftDown(int index)
     {
         System.out.println(STR."User would like to shift the Item at \{index} down.");
-        // TODO: you write this.
+        // TODO: you write this code for handleShiftDown.
         //This should NOT necessitate remaking "items" -- just editing it.
     }
 
@@ -131,11 +133,9 @@ public class Category implements PanelManager<Item>
     public void handleAdd()
     {
         System.out.println("User would like to add another Item.");
-        // TODO: since this would change the size of the array, you will need to do the following:
-        // a) create a new array of Items that is the correct size
-        // b) copy over the existing data in "items" to the new array
-        // c) make a new Item object and put it into the new array
-        // d) update "items" to be this new array, replacing the old one.
+        // Because this changes the size of the array, this method should replace items with a new, slightly larger,
+        // array AFTER copying the data from the old items first.
+        // TODO: write this code for handleAdd().
     }
 
     /**
@@ -147,11 +147,9 @@ public class Category implements PanelManager<Item>
     public void handleRemove(int index)
     {
         System.out.println(STR."User would like to remove the item at \{index}.");
-        // TODO: since this would change the size of the array, you will need to do the following:
-        // a) check that "index" is not -1 -- if it is, then cancel.
-        // b) make a new array of Items that is the proper size
-        // c) copy all the Item objects from the existing "items" array into this one -- except the one at "index."
-        // d) update "items" to be this new array, replacing the old one.
+        // Because this changes the size of the array, this method should replace items with a new, slightly smaller,
+        // array AFTER copying the data from the old items first.
+        // TODO: write this code for handleRemove().
     }
 
     /**
