@@ -18,17 +18,17 @@ public class Item
     }
 
     /**
-     * overloatded constructor - makes a new Item object, initializing its values from the tab-delimited description of
+     * overloaded constructor - makes a new Item object, initializing its values from the tab-delimited description of
      * them.
      * @param lineToDecode - a single-line, tab-delimited string holding the values to put into this Item's attributes.
      */
     public Item(String lineToDecode)
     {
-        // TODO: parse the data in lineToDecode to fill in the variables for this class.
-        //Note: see the note in getSaveString(), below regarding tabs and carriage returns.
+        // TODO: write this overloaded constructor to parse the data in lineToDecode and fill in the variables for this class.
+        //Note: see the note in getSaveString(), below regarding tabs and carriage returns if you are using a large textarea.
     }
 
-    // TODO: write accessors and modifiers for your attributes, possibly replacing mine.
+    // TODO: write accessors and modifiers for your attributes, possibly replacing these.
     public String getName()
     {
         return name;
@@ -47,7 +47,8 @@ public class Item
     @Override
     public String toString()
     {
-        // TODO: you write this, based on your attributes and preferences.
+        // TODO: you write toString, based on your attributes and preferences.
+        // you don't have to use all of them; this is what will appear in the list of items.
         return name;
     }
 
@@ -58,11 +59,12 @@ public class Item
      */
     public String getSaveString()
     {
-        // TODO: you write this.
+        // TODO: you write this code for getSaveString.
         //Note: if you are using a longer string, like the sort that is found in a TextArea, there might be tabs or line
         //      breaks in it. You will probably want to replace these with some other characters, or this will mess up
         //      the expectation that the fields are separated by tabs and this composes a single line.
         //      This time, you may make use of String's built-in replace() method.
-        return STR."\{name}\n";
+
+        return "not written yet."; // replace this.
     }
 }
