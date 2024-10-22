@@ -9,6 +9,8 @@ public class CategoryCollection implements PanelManager<Category>
 
     public CategoryCollection()
     {
+        // TODO: this code is here just so you have _something_ to see when the program runs. Consider making categories
+        //     start as an empty list, once you have things rolling.
         categories = new Category[1];
         categories[0] = new Category();
     }
@@ -21,7 +23,8 @@ public class CategoryCollection implements PanelManager<Category>
      */
     public CategoryCollection(int numCategories)
     {
-        categories = new Category[numCategories];
+        //TODO: You write this overloaded constructor!
+        System.out.println(STR."I need to make 'categories' become an array of \{numCategories} null values, to be filled in later."); // replace this line.
     }
 
     /**
@@ -60,13 +63,10 @@ public class CategoryCollection implements PanelManager<Category>
     {
         StringBuilder builder = new StringBuilder();
         //--------------------------------
-        // TODO: you write this. Note that you can accomplish much of this by repeated calls to getSaveString() for each
+        // TODO: you write this code for getSaveString().
+        // Note that you can accomplish much of this by repeated calls to getSaveString() for each
         //       of the Category objects in "categories"
-        int numCategories = categories.length;
-        builder.append(numCategories);
-        builder.append("\n");
-        for (int i=0; i<numCategories; i++)
-            builder.append(categories[i].getSaveString());
+
         //--------------------------------
         return builder.toString();
     }
@@ -81,7 +81,7 @@ public class CategoryCollection implements PanelManager<Category>
     public void handleShiftUp(int index)
     {
         System.out.println(STR."User would like to shift the Item at \{index} up.");
-        // TODO: you write this.
+        // TODO: you write this code for handleShiftUp.
         //This should NOT necessitate remaking "categories" -- just editing it.
 
     }
@@ -95,7 +95,7 @@ public class CategoryCollection implements PanelManager<Category>
     public void handleShiftDown(int index)
     {
         System.out.println(STR."User would like to shift the Item at \{index} down.");
-        // TODO: you write this.
+        // TODO: you write this code for handleShiftDown.
         //This should NOT necessitate remaking "categories" -- just editing it.
 
     }
@@ -106,12 +106,10 @@ public class CategoryCollection implements PanelManager<Category>
     @Override
     public void handleAdd()
     {
-        System.out.println("User would like to add another Item.");
-        // TODO: since this would change the size of the array, you will need to do the following:
-        // a) create a new array of Categories that is the correct size
-        // b) copy over the existing data in "categories" to the new array
-        // c) make a new Category object and put it into the new array
-        // d) update "categories" to be this new array, replacing the old one.
+        System.out.println("User would like to add another Item."); // replace this.
+        // Because this changes the size of the array, this method should replace 'categories' with a new, slightly
+        // larger, array AFTER copying the data from the old 'categories' first.
+        // TODO: write this code for handleAdd().
     }
 
     /**
@@ -122,12 +120,10 @@ public class CategoryCollection implements PanelManager<Category>
     @Override
     public void handleRemove(int index)
     {
-        System.out.println(STR."User would like to remove the item at \{index}.");
-        // TODO: since this would change the size of the array, you will need to do the following:
-        // a) check that "index" is not -1 -- if it is, then cancel.
-        // b) make a new array of Categories that is the proper size
-        // c) copy all the Category objects from the existing "categories" array into this one -- except the one at "index."
-        // d) update "categories" to be this new array, replacing the old one.
+        System.out.println(STR."User would like to remove the item at \{index}."); // replace this.
+        // Because this changes the size of the array, this method should replace 'categories' with a new, slightly
+        // smaller, array AFTER copying the data from the old 'categories' first.
+        // TODO: write this code for handleRemove().
     }
 
     /**
