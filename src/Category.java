@@ -31,8 +31,8 @@ public class Category implements PanelManager<Item>
      */
     public Category(String descriptionInfoToParse, int numItems)
     {
-        items = new Item[numItems];
         System.out.println(STR."I'm constructing a Category and need to turn '\{descriptionInfoToParse} into the variables for the Category class.");
+        System.out.println(STR."And I need to make 'items' be an array of \{numItems} null values.");
     }
 
     /**
@@ -92,10 +92,8 @@ public class Category implements PanelManager<Item>
         StringBuilder builder = new StringBuilder();
         // ----------------------------
         // TODO: you write this.
-        builder.append(STR."\{title}\t\{subtitle}\n");
-        builder.append(STR."\{items.length}\n");
-        for (int i=0; i<items.length; i++)
-            builder.append(items[i].getSaveString());
+
+
         // ---------------------------
         return builder.toString();
     }
